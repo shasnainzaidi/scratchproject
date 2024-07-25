@@ -1,0 +1,4 @@
+[INFO ] 2024-07-25 17:13:20.206 [main] log4jDmo - This is information message
+[FATAL] 2024-07-25 17:13:20.211 [main] log4jDmo - This is fatal message
+[WARN ] 2024-07-25 17:13:20.211 [main] log4jDmo - This is warning message
+[ERROR] 2024-07-25 17:13:20.211 [main] log4jDmo - This is an error

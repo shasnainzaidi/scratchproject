@@ -1,0 +1,12 @@
+<suite name="Suite1" parallel ="Tests">
+    <test thread-count="5" name="Test1">
+        <groups>
+            <run>
+                <include name="Sanity"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="HpCases.Logins"/>
+        </classes>
+    </test>
+</suite>
