@@ -6,10 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import HomeObj.Objects;
 
 
@@ -19,17 +16,14 @@ public class Logins{
     private WebDriver driver;
     private Objects loginobj;
 
-    @BeforeTest
+    @BeforeMethod
     public void Initialization() {
         String chromeVersion = "126.0.6478.183";
         WebDriverManager.chromedriver().driverVersion(chromeVersion).setup();
         driver = new ChromeDriver();
 
     }
-    @AfterMethod
-            public void webDriverClose(){
-        driver.close();
-    }
+
 
 
 @Test (groups ="Sanity")
@@ -70,7 +64,12 @@ loginobj.Login.click();
     System.out.println("exiting the browser");
 
     }
-
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 @Test (groups ="Sanity")
     public void loginPhone(){
         System.out.println("Starting phone login test");
