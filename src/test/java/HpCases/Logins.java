@@ -100,5 +100,46 @@ loginobj.Login.click();
 
 }
 
+@Test
+    public void emailValidation(){
+        //1. Imported the POM object class as driver
+       try {
+           loginobj = new Objects(driver);
+           //2. Opened base url
+           loginobj.openURL();
+           //3. Timeout
+           driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+           //4. Click on login button
+           loginobj.LoginBtn.click();
+           //5. Click on login with email
+           loginobj.LoginEmail.click();
+           //6. Enter email
+           loginobj.emailId.sendKeys("hasnin.xaidi1@gmail.com");
+           //7. Navigate to password
+           loginobj.enterPassword();
+           loginobj.Login.click();
+           String errorMessage = driver.findElement(By.xpath("(//span[@aria-label='Input error message'])[1]")).getText();
+           System.out.println(errorMessage);
+           String expectedMessage = "The e-mail address must be in the format of name@domain.com";
+           Assert.assertEquals(errorMessage, expectedMessage);
+       }
+       catch (Exception ecp){
+
+           System.out.println("We are having some error in code");
+
+
+       }
+       finally {
+                System.out.println("cant run the test");
+
+        //Assertion
+
+
+       }
+
+
+}
+
+
 
 }
