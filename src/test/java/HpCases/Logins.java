@@ -1,5 +1,6 @@
 package HpCases;
 
+import concepts.configReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -15,13 +16,15 @@ import java.util.concurrent.TimeUnit;
 public class Logins{
     private WebDriver driver;
     private Objects loginobj;
+    private concepts.configReader configReader;
+
 
     @BeforeMethod
     public void Initialization() {
         String chromeVersion = "126.0.6478.183";
         WebDriverManager.chromedriver().driverVersion(chromeVersion).setup();
         driver = new ChromeDriver();
-
+        configReader = new configReader();
     }
 
 
@@ -29,6 +32,8 @@ public class Logins{
 @Test (groups ="Sanity")
     public void loginEmail(){
     loginobj = new Objects(driver);
+    int timeout = Integer.parseInt(configReader.getProperty("timeout"));
+
 
 //1. Open website
     loginobj.openURL();
@@ -36,7 +41,7 @@ public class Logins{
 loginobj.LoginBtn.click();
     System.out.println("login button clicked");
 
-driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS );
+driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );
 //3. click on continue with email
 loginobj.LoginEmail.click();
     System.out.println("Click on login with email");
@@ -53,8 +58,8 @@ loginobj.enterPassword();
 loginobj.Login.click();
     System.out.println("Login button is clicked");
    // @Description(" Assert if user has logged in or not")
-    driver.findElement(By.xpath("//img[@class='_42021e4e']")).click();
-            WebElement userNameElement = driver.findElement(By.xpath("//span[@class='_2454243d b7af14b4']"));
+loginobj.userDropdown.click();
+WebElement userNameElement = loginobj.userNameElement;
     String userName = userNameElement.getText();
             System.out.println(userName);
              String expected= "Everything for “U”";

@@ -27,6 +27,14 @@ public class Objects {
     @FindBy(xpath = "//input[@class='_0c2ffce3 _16f994ea _724f8860']")
     public WebElement phoneId;
 
+    @FindBy(xpath = "//img[@class='_42021e4e']")
+    public WebElement userDropdown;
+
+    @FindBy(xpath = "//span[@class='_2454243d b7af14b4']")
+    public WebElement userNameElement;
+
+
+
     @FindBy(xpath = "//input[@id='password']")
     public WebElement password;
 
