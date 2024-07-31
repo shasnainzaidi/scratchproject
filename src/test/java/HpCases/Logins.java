@@ -12,7 +12,7 @@ import HomeObj.Objects;
 
 
 import java.util.concurrent.TimeUnit;
-
+//@Listeners(testNGListeners.class)
 public class Logins{
     private WebDriver driver;
     private Objects loginobj;
@@ -105,7 +105,7 @@ WebElement userNameElement = loginobj.userNameElement;
 
 }
 
-@Test
+@Test(groups = {"Sanity", "Smoke"})
     public void emailValidation(){
         //1. Imported the POM object class as driver
        try {
