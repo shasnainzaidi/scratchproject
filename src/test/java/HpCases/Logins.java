@@ -39,24 +39,24 @@ public class Logins{
     loginobj.openURL();
     //2. click on login button
 loginobj.LoginBtn.click();
-    System.out.println("login button clicked");
+
 
 driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );
 //3. click on continue with email
 loginobj.LoginEmail.click();
-    System.out.println("Click on login with email");
+
 
     //4. Enter email
 loginobj.enteremail();
-    System.out.println("Email ID is entered");
+
 
     //5. Enter password
 
 loginobj.enterPassword();
-    System.out.println("password is entered");
+
     //click login
 loginobj.Login.click();
-    System.out.println("Login button is clicked");
+
    // @Description(" Assert if user has logged in or not")
 loginobj.userDropdown.click();
 WebElement userNameElement = loginobj.userNameElement;
@@ -64,9 +64,9 @@ WebElement userNameElement = loginobj.userNameElement;
             System.out.println(userName);
              String expected= "Everything for “U”";
     Assert.assertEquals(userName, expected);
-    System.out.println("Assertion is passed");
+
    //3. Close the browser
-    System.out.println("exiting the browser");
+
 
     }
     @AfterMethod
@@ -77,19 +77,19 @@ WebElement userNameElement = loginobj.userNameElement;
     }
 @Test (groups ="Sanity")
     public void loginPhone(){
-        System.out.println("Starting phone login test");
+
     loginobj = new Objects(driver);
-    System.out.println("Object class imported");
+
     //driver.get("https://www.olx.com.pk/");
 
     loginobj.openURL();
-    System.out.println("browser opened");
+
 
     loginobj.LoginBtn.click();
-    System.out.println("Clicked login button");
+
 
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS );
-    System.out.println("wait done");
+
 
     loginobj.LoginPhone.click();
         loginobj.enterPhone();
