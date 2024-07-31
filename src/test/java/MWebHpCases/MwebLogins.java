@@ -8,7 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
@@ -23,11 +27,22 @@ public class MwebLogins {
     private Properties properties;
     private configReader configReader;
 
+    @Parameters("browserName")
     @BeforeTest
-            public void Initialization() {
+            public void Initialization(@Optional("chrome") String browserName) {
         configReader = new configReader();
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        if (browserName.equalsIgnoreCase("chrome")){
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } 
+        else if (browserName.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        } else if (browserName.equalsIgnoreCase("edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        }
+
 
     }
 @Test
@@ -35,7 +50,7 @@ public class MwebLogins {
     loginobj = new Objects(driver);
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 //1. Open website
-    driver.get("https://www.olx.com.pk/");
+    loginobj.openURL();
     //2. click on login button
     loginobj.LoginBtn.click();
     driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );    //3. click on continue with email
@@ -62,17 +77,17 @@ loginobj.Login.click();
     public void loginPhone() {
     loginobj = new Objects(driver);
 
-    driver.get("https://www.olx.com.pk/");
-    loginobj.LoginBtn.click();
+loginobj.openURL();
+loginobj.LoginBtn.click();
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     loginobj.LoginPhone.click();
     loginobj.enterPhone();
     loginobj.enterPassword();
     loginobj.Login.click();
 
-    driver.findElement(By.xpath("//img[@class='_42021e4e']")).click();
+    loginobj.userDropdown.click();
     String expect = "Everything for “U”";
-    WebElement userNameElement = driver.findElement(By.xpath("//span[@class='_2454243d b7af14b4']"));
+    WebElement userNameElement = loginobj.userNameElement;
     String userName = userNameElement.getText();
     Assert.assertEquals(userName, expect);
     driver.close();
