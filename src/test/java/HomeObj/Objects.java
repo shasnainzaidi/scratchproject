@@ -44,6 +44,7 @@ public class Objects {
     private String number = "03434001699";
     private String pswrd = "qwerty10@";
     private String email = "hasnain.xaidi1@gmail.com";
+    private String expectedUserName = "Everything for “U”";
 
     public void openURL() {
         driver.get(baseURL);

@@ -45,7 +45,7 @@ public class MwebLogins {
 
 
     }
-@Test
+@Test (dependsOnMethods = {"loginPhone"})
     public void loginEmail(){
     loginobj = new Objects(driver);
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
