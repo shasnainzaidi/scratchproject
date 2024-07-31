@@ -29,7 +29,7 @@ public class Logins{
 
 
 
-@Test (groups ="Sanity")
+@Test (groups ="Sanity", priority = 1)
     public void loginEmail(){
     loginobj = new Objects(driver);
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
@@ -39,24 +39,16 @@ public class Logins{
     loginobj.openURL();
     //2. click on login button
 loginobj.LoginBtn.click();
-
-
 driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );
 //3. click on continue with email
 loginobj.LoginEmail.click();
 
-
     //4. Enter email
 loginobj.enteremail();
-
-
-    //5. Enter password
-
+ //5. Enter password
 loginobj.enterPassword();
-
     //click login
 loginobj.Login.click();
-
    // @Description(" Assert if user has logged in or not")
 loginobj.userDropdown.click();
 WebElement userNameElement = loginobj.userNameElement;
@@ -67,7 +59,6 @@ WebElement userNameElement = loginobj.userNameElement;
 
    //3. Close the browser
 
-
     }
     @AfterMethod
     public void tearDown() {
@@ -75,12 +66,10 @@ WebElement userNameElement = loginobj.userNameElement;
             driver.quit();
         }
     }
-@Test (groups ="Sanity")
+@Test (groups ="Sanity", priority = 2)
     public void loginPhone(){
 
     loginobj = new Objects(driver);
-
-    //driver.get("https://www.olx.com.pk/");
 
     loginobj.openURL();
 
@@ -96,16 +85,16 @@ WebElement userNameElement = loginobj.userNameElement;
         loginobj.enterPassword();
         loginobj.Login.click();
 
-        driver.findElement(By.xpath("//img[@class='_42021e4e']")).click();
+        loginobj.userDropdown.click();
         String expect = "Everything for “U”";
-        WebElement userNameElement = driver.findElement(By.xpath("//span[@class='_2454243d b7af14b4']"));
+        WebElement userNameElement = loginobj.userNameElement;
         String userName = userNameElement.getText();
         Assert.assertEquals(userName, expect);
         driver.close();
 
 }
 
-@Test(groups = {"Sanity", "Smoke"})
+@Test(groups = {"Sanity", "Smoke"}, priority = 3)
     public void emailValidation(){
         //1. Imported the POM object class as driver
        try {
@@ -119,11 +108,11 @@ WebElement userNameElement = loginobj.userNameElement;
            //5. Click on login with email
            loginobj.LoginEmail.click();
            //6. Enter email
-           loginobj.emailId.sendKeys("hasnin.xaidi1@gmail.com");
+           loginobj.enterInvalidEmail();
            //7. Navigate to password
            loginobj.enterPassword();
            loginobj.Login.click();
-           String errorMessage = driver.findElement(By.xpath("(//span[@aria-label='Input error message'])[1]")).getText();
+           String errorMessage = loginobj.emailErrorMessage.getText();
            System.out.println(errorMessage);
            String expectedMessage = "The e-mail address must be in the format of name@domain.com";
            Assert.assertEquals(errorMessage, expectedMessage);

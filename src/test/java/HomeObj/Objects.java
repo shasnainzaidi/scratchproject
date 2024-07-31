@@ -33,19 +33,24 @@ public class Objects {
     @FindBy(xpath = "//span[@class='_2454243d b7af14b4']")
     public WebElement userNameElement;
 
-
+    @FindBy(xpath = "//span[@aria-label='Input error message'])[1]")
+    public WebElement emailErrorMessage;
 
     @FindBy(xpath = "//input[@id='password']")
     public WebElement password;
 
     private String baseURL = "https://www.olx.com.pk/";
-
+    private String invlaidEmail = "hasnin.xaidi1@gmail.com";
     private String number = "03434001699";
     private String pswrd = "qwerty10@";
     private String email = "hasnain.xaidi1@gmail.com";
 
     public void openURL() {
         driver.get(baseURL);
+    }
+    public void enterInvalidEmail(){
+        emailId.sendKeys(invlaidEmail);
+
     }
     public void enterPhone(){
         phoneId.sendKeys(number);
