@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-08-01T14:35:05 PKT" name="All Test Suite" finished-at="2024-08-01T14:35:18 PKT" duration-ms="12999">
+    <groups>
+      <group name="Sanity">
+        <method signature="Logins.loginEmail()[pri:1, instance:HpCases.Logins@783a467b]" name="loginEmail" class="HpCases.Logins"/>
+        <method signature="Logins.loginPhone()[pri:2, instance:HpCases.Logins@783a467b]" name="loginPhone" class="HpCases.Logins"/>
+      </group> <!-- Sanity -->
+    </groups>
+    <test started-at="2024-08-01T14:35:05 PKT" name="C:/Users/Hassnain Zaidi/IdeaProjects/Scratch/src/test/java/HpCases/Logins.java" finished-at="2024-08-01T14:35:18 PKT" duration-ms="12999">
+      <class name="HpCases.Logins">
+        <test-method is-config="true" signature="Initialization()[pri:0, instance:HpCases.Logins@783a467b]" started-at="2024-08-01T14:35:05 PKT" name="Initialization" finished-at="2024-08-01T14:35:06 PKT" duration-ms="1133" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Initialization -->
+        <test-method signature="loginEmail()[pri:1, instance:HpCases.Logins@783a467b]" started-at="2024-08-01T14:35:06 PKT" name="loginEmail" finished-at="2024-08-01T14:35:11 PKT" duration-ms="5600" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginEmail -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:HpCases.Logins@783a467b]" started-at="2024-08-01T14:35:11 PKT" name="tearDown" finished-at="2024-08-01T14:35:12 PKT" duration-ms="163" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="Initialization()[pri:0, instance:HpCases.Logins@783a467b]" started-at="2024-08-01T14:35:12 PKT" name="Initialization" finished-at="2024-08-01T14:35:12 PKT" duration-ms="667" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Initialization -->
+        <test-method signature="loginPhone()[pri:2, instance:HpCases.Logins@783a467b]" started-at="2024-08-01T14:35:12 PKT" name="loginPhone" finished-at="2024-08-01T14:35:17 PKT" duration-ms="5283" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginPhone -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:HpCases.Logins@783a467b]" started-at="2024-08-01T14:35:18 PKT" name="tearDown" finished-at="2024-08-01T14:35:18 PKT" duration-ms="71" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- HpCases.Logins -->
+    </test> <!-- C:/Users/Hassnain Zaidi/IdeaProjects/Scratch/src/test/java/HpCases/Logins.java -->
+  </suite> <!-- All Test Suite -->
+</testng-results>
