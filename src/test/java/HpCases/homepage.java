@@ -7,11 +7,15 @@ import concepts.retryAnalyzer;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class homepage {
@@ -48,10 +52,12 @@ public class homepage {
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
     js.executeScript("window.scrollBy(0, 2000);");
-    driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-    System.out.println("scroller moved");
 
-    homepg.firstAd.click();
+    System.out.println("scroller moved");
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(homepg.firstAd));
+
+   // homepg.firstAd.click();
     String adLocation = homepg.adLocation.getText();
 
   Assert.assertEquals(l3Name, adLocation);
