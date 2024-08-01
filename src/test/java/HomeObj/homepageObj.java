@@ -17,7 +17,7 @@ public class homepageObj {
     @FindBy(xpath = "(//span[@class='_8206696c'])[3]")
     public WebElement l3Location;
 
-    @FindBy(xpath = "(//div[@class='_9dfeb3c2'])[3]")
+    @FindBy(xpath = "(//div[@class='_9dfeb3c2'])[63]")
     public WebElement firstAd;
 
     @FindBy(xpath = "//div[@class='_1ee53078']")
