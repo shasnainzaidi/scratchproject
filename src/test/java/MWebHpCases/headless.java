@@ -1,8 +1,11 @@
 package MWebHpCases;
 
 import HomeObj.Objects;
+import HomeObj.homepageObj;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
+import org.junit.runner.Description;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class headless {
@@ -18,6 +22,7 @@ public class headless {
 
     private WebDriver driver;
     private Objects headles;
+    private homepageObj home;
 
    @BeforeTest
    public void initialization(){
@@ -25,13 +30,15 @@ public class headless {
        ChromeOptions options = new ChromeOptions();
        options.addArguments("--headless");
        WebDriverManager.chromedriver().setup();
-       driver = new ChromeDriver(options);
+       driver = new ChromeDriver();
 
    }
 
-   @Test
-    public void login(){
+   @Test(description= "Upload image from computer")
+
+    public void login() throws IOException {
        headles = new Objects(driver);
+       home = new homepageObj(driver);
        headles.openURL();
        headles.LoginBtn.click();
        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS );    //3. click on continue with email
@@ -44,15 +51,15 @@ public class headless {
        headles.enterPassword();    //click login
        headles.Login.click();
        // @Description(" Assert if user has logged in or not")
-       headles.userDropdown.click();
-       WebElement userNameElement = headles.userNameElement;
-       String userName = userNameElement.getText();
-       System.out.println(userName);
-       String expected= "Everything for “U”";
-       Assert.assertEquals(userName, expected);
-       driver.close();
+        home.chatButton.click();
+        home.firstChat.click();
+        home.clickAttachment.click();
+        home.clickGallery.click();
+        Runtime.getRuntime().exec("D:\\AutoITChat.exe");
 
 
    }
+
+
 
 }

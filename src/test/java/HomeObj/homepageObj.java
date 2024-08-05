@@ -27,6 +27,19 @@ public class homepageObj {
     @FindBy(xpath ="(//input[@class='_0c2ffce3'])[1]")
     public WebElement homeLocation;
 
+    @FindBy(xpath = "//img[@alt='Go to chat']")
+    public WebElement chatButton;
+
+    @FindBy(xpath = "//a[@class='_8b393b43']")
+    public WebElement firstChat;
+
+    @FindBy(xpath = "//button[@class='c70b4ce7 _3b9a59f0']//*[name()='svg']")
+    public WebElement clickAttachment;
+
+    @FindBy(xpath = "//label[1]//*[name()='svg']")
+    public WebElement clickGallery;
+
+
 
 
     private String baseURL = "https://www.olx.com.pk/";
