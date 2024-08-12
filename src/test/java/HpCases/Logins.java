@@ -12,7 +12,7 @@ import HomeObj.Objects;
 
 
 import java.util.concurrent.TimeUnit;
-//@Listeners(testNGListeners.class)
+@Listeners(testNGListeners.class)
 public class Logins{
     private WebDriver driver;
     private Objects loginobj;

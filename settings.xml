@@ -1,0 +1,17 @@
+<settings>
+    <profiles>
+        <profile>
+            <id>jdk-config</id>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+                <maven.compiler.fork>true</maven.compiler.fork>
+                <maven.compiler.executable>C:\Program Files\Java\jdk-11\bin\javac</maven.compiler.executable>
+            </properties>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>jdk-config</activeProfile>
+    </activeProfiles>
+</settings>

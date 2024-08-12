@@ -8,7 +8,6 @@ public class testNGListeners implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        ITestListener.super.onStart(context);
         System.out.println("******"+ context.getName() + " is Test started");
     }
 
@@ -24,11 +23,25 @@ public class testNGListeners implements ITestListener {
 
     }
 
+    public void onFinish(ITestContext context) {
+        System.out.println("******"+ context.getName() + " is Test Finished");
+
+    }
+
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("******"+ result.getName() + " is Test successfull");
 
     }
 
+    @Override
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result){
+        System.out.println("******"+ result.getName() + " done and failed within success percentage");
+
+    }
+    @Override
+    public void onTestStart(ITestResult result){
+        System.out.println("******"+ result.getName() + " is Started");
+    }
 
 }

@@ -2,6 +2,7 @@ package MWebHpCases;
 
 import HomeObj.Objects;
 import HomeObj.homepageObj;
+import HpCases.testNGListeners;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.junit.runner.Description;
@@ -12,11 +13,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+//@Listeners(testNGListeners.class)
 public class headless {
 
 
