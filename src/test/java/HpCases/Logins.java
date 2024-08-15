@@ -2,7 +2,6 @@ package HpCases;
 
 import concepts.configReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,7 +20,7 @@ public class Logins{
 
 
     @BeforeMethod
-    public void Initialization() {
+    public WebDriver Initialization() {
         configReader = new configReader();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
@@ -29,8 +28,9 @@ public class Logins{
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
+        String chromeVersion = configReader.getProperty("chromevers");
+        WebDriverManager.chromedriver().driverVersion(chromeVersion).setup();
+        driver = new ChromeDriver();
         return driver;
 
     }
