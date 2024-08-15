@@ -37,6 +37,7 @@ jobs:
               libvulkan1 \
               xdg-utils \
               fonts-liberation
+
       - run:
           name: Install ChromeDriver
           command: |
