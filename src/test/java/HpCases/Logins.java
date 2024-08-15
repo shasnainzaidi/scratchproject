@@ -22,9 +22,11 @@ public class Logins{
     @BeforeMethod
     public void Initialization() {
         configReader = new configReader();
-        String chromeVersion = configReader.getProperty("chromevers");
-        WebDriverManager.chromedriver().driverVersion(chromeVersion).setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless"); // Optional: Run Chrome in headless mode
+        driver = new ChromeDriver(options);
 
     }
 
