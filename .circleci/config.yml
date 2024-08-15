@@ -1,0 +1,31 @@
+version: 2.1
+
+executors:
+  maven-executor:
+    docker:
+      - image: circleci/openjdk:11.0.10
+    working_directory: ~/repo
+
+jobs:
+  build:
+    executor: maven-executor
+    steps:
+      - checkout
+
+      - run:
+          name: Install Maven Dependencies
+          command: mvn install -DskipTests
+
+      - run:
+          name: Run Tests
+          command: mvn test
+
+      - run:
+          name: Generate Allure Report
+          command: mvn allure:report
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
