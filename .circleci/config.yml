@@ -13,16 +13,6 @@ jobs:
       - checkout
 
       - run:
-          name: Install Maven Dependencies
-          command: mvn install -DskipTests
-
-      - run:
-         name: Install Chrome
-         command: |
-           curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb
-           sudo dpkg -i google-chrome-stable_current_amd64.deb
-           sudo apt-get install -f
-      - run:
           name: Install Dependencies
           command: |
             sudo apt-get update
@@ -36,8 +26,14 @@ jobs:
               libu2f-udev \
               libvulkan1 \
               xdg-utils \
-              fonts-liberation
+              fonts-liberation \
               --fix-missing
+
+      - run:
+          name: Install Chrome
+          command: |
+            curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -f
 
       - run:
           name: Install ChromeDriver
@@ -47,6 +43,11 @@ jobs:
             unzip chromedriver_linux64.zip
             sudo mv chromedriver /usr/local/bin/chromedriver
             sudo chmod +x /usr/local/bin/chromedriver
+
+      - run:
+          name: Install Maven Dependencies
+          command: mvn install -DskipTests
+
       - run:
           name: Run Tests
           command: mvn clean test
