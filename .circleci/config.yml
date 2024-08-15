@@ -37,6 +37,7 @@ jobs:
               libvulkan1 \
               xdg-utils \
               fonts-liberation
+              --fix-missing
 
       - run:
           name: Install ChromeDriver
