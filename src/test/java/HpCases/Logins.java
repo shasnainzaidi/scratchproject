@@ -21,10 +21,11 @@ public class Logins{
 
     @BeforeMethod
     public void Initialization() {
-        String chromeVersion = "126.0.6478.183";
+        configReader = new configReader();
+        String chromeVersion = configReader.getProperty("chromevers");
         WebDriverManager.chromedriver().driverVersion(chromeVersion).setup();
         driver = new ChromeDriver();
-        configReader = new configReader();
+
     }
 
 
