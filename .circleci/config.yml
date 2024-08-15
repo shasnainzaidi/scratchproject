@@ -17,24 +17,20 @@ jobs:
           command: mvn install -DskipTests
 
       - run:
-          name: Install Google Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
+         name: Install Chrome
+         command: |
+           curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb
+           sudo dpkg -i google-chrome-stable_current_amd64.deb
+           sudo apt-get install -f
 
       - run:
           name: Install ChromeDriver
           command: |
-            CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-            wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
-            unzip ~/chromedriver_linux64.zip -d ~/
-            rm ~/chromedriver_linux64.zip
-            sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
-            sudo chown root:root /usr/local/bin/chromedriver
-            sudo chmod 0755 /usr/local/bin/chromedriver
-
+            CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+            curl -sSL "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -o chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/local/bin/chromedriver
+            sudo chmod +x /usr/local/bin/chromedriver
       - run:
           name: Run Tests
           command: mvn clean test
