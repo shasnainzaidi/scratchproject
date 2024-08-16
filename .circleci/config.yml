@@ -29,7 +29,9 @@ jobs:
               libvulkan1 \
               xdg-utils \
               fonts-liberation \
-              gnupg
+              gnupg \
+              # Install file command
+              file
 
       - run:
           name: Install Maven
@@ -38,7 +40,7 @@ jobs:
             MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
             echo "Downloading Maven from $MAVEN_URL"
             curl -fSL -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz $MAVEN_URL || (echo "Failed to download Maven. Exiting." && exit 1)
-            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz || (echo "Failed to verify Maven file type. Exiting." && exit 1)
             tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || (echo "Failed to extract Maven. Exiting." && exit 1)
             ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
             rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
