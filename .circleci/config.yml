@@ -3,7 +3,7 @@ version: 2.1
 executors:
   maven-executor:
     docker:
-      - image: circleci/openjdk:20.0
+      - image: openjdk:20-jdk
     working_directory: ~/repo
 
 jobs:
