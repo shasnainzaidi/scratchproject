@@ -27,6 +27,7 @@ jobs:
               libvulkan1 \
               xdg-utils \
               fonts-liberation \
+              file \  # Install the 'file' command
               --fix-missing
 
       - run:
