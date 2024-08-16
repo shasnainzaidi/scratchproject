@@ -13,48 +13,28 @@ jobs:
       - checkout
 
       - run:
-          name: Update and Install Basic Dependencies
+          name: Install Dependencies
           command: |
             apt-get update
-            apt-get install -y wget curl unzip --fix-missing
-
-      - run:
-          name: Install Additional Dependencies - Group 1
-          command: |
-            apt-get install -y libgbm1 libnspr4 --fix-missing
-
-      - run:
-          name: Install Additional Dependencies - Group 2
-          command: |
-            apt-get install -y libnss3 libu2f-udev libvulkan1 --fix-missing
-
-      - run:
-          name: Install Additional Dependencies - Group 3
-          command: |
-            apt-get install -y xdg-utils fonts-liberation --fix-missing
+            apt-get install -y \
+              wget \
+              curl \
+              unzip \
+              libgbm1 \
+              libnspr4 \
+              libnss3 \
+              libu2f-udev \
+              libvulkan1 \
+              xdg-utils \
+              fonts-liberation \
+              --fix-missing
 
       - run:
           name: Install Maven
           command: |
             MAVEN_VERSION=3.3.1
-            echo "Downloading Maven version ${MAVEN_VERSION}"
-            curl -f -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-            
-            # Check if the download was successful
-            if [ ! -f /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz ]; then
-              echo "Download failed or file not found!"
-              exit 1
-            fi
-            
-            # Print first few lines to check content (optional for debugging)
-            head -n 20 /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-
-            # Extract Maven
-            tar xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || {
-              echo "Failed to extract Maven. Exiting."
-              exit 1
-            }
-
+            curl -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/
             ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
             rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
@@ -70,19 +50,19 @@ jobs:
           name: Install ChromeDriver
           command: |
             CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-            curl -sSL "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -o chromedriver_linux64.zip
-            unzip chromedriver_linux64.zip
-            mv chromedriver /usr/local/bin/chromedriver
+            curl -sSL "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -o /tmp/chromedriver_linux64.zip
+            unzip /tmp/chromedriver_linux64.zip -d /tmp
+            mv /tmp/chromedriver /usr/local/bin/chromedriver
             chmod +x /usr/local/bin/chromedriver
+            rm /tmp/chromedriver_linux64.zip
 
       - run:
-           name: Install Maven Dependencies
-           command: |
-             mvn clean install -U -DskipTests -X
+          name: Install Maven Dependencies
+          command: mvn clean install -U -DskipTests -X
 
       - run:
           name: Run Tests
-          command: mvn clean test
+          command: mvn test
 
       - run:
           name: Generate Allure Report
