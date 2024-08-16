@@ -13,22 +13,25 @@ jobs:
       - checkout
 
       - run:
-          name: Install Dependencies
+          name: Update and Install Basic Dependencies
           command: |
             apt-get update
-            apt-get install -y \
-              wget \
-              curl \
-              unzip \
-              libgbm1 \
-              libnspr4 \
-              libnss3 \
-              libu2f-udev \
-              libvulkan1 \
-              xdg-utils \
-              fonts-liberation \
-              file \  # Install the 'file' command
-              --fix-missing
+            apt-get install -y wget curl unzip --fix-missing
+
+      - run:
+          name: Install Additional Dependencies - Group 1
+          command: |
+            apt-get install -y libgbm1 libnspr4 --fix-missing
+
+      - run:
+          name: Install Additional Dependencies - Group 2
+          command: |
+            apt-get install -y libnss3 libu2f-udev libvulkan1 --fix-missing
+
+      - run:
+          name: Install Additional Dependencies - Group 3
+          command: |
+            apt-get install -y xdg-utils fonts-liberation --fix-missing
 
       - run:
           name: Install Maven
@@ -36,19 +39,13 @@ jobs:
             MAVEN_VERSION=3.3.1
             echo "Downloading Maven version ${MAVEN_VERSION}"
             curl -f -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-
-            # Check file type
-            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-
-            # Print first few lines to check content
-            head -n 20 /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-
+            
             # Extract Maven
             tar xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || {
               echo "Failed to extract Maven. Exiting."
               exit 1
             }
-
+            
             ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
             rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
@@ -79,10 +76,4 @@ jobs:
 
       - run:
           name: Generate Allure Report
-          command: mvn allure:report
 
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
