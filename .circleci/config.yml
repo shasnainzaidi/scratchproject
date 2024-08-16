@@ -30,6 +30,14 @@ jobs:
               --fix-missing
 
       - run:
+          name: Install Maven
+          command: |
+            curl -sSL https://apache.org/dyn/closer.cgi/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.tar.gz -o maven.tar.gz
+            tar -xzf maven.tar.gz
+            mv apache-maven-3.9.0 /opt/maven
+            ln -s /opt/maven/bin/mvn /usr/local/bin/mvn
+
+      - run:
           name: Install Chrome
           command: |
             curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb
