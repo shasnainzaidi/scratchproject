@@ -19,6 +19,8 @@ jobs:
             apt-get install -y \
               wget \
               curl \
+              tar \
+              gzip \
               unzip \
               libgbm1 \
               libnspr4 \
@@ -33,39 +35,20 @@ jobs:
           name: Install Maven
           command: |
             MAVEN_VERSION=3.3.1
-            curl -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-            tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/
+            MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+            echo "Downloading Maven from $MAVEN_URL"
+            curl -fSL -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz $MAVEN_URL || (echo "Failed to download Maven. Exiting." && exit 1)
+            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || (echo "Failed to extract Maven. Exiting." && exit 1)
             ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
             rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
       - run:
-          name: Check APT Sources
-          command: cat /etc/apt/sources.list.d/google-chrome.list || echo "No Google Chrome repository found."
-
-      - run:
-          name: Add Google Chrome Repository
+          name: Install Google Chrome
           command: |
             curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
             echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
             apt-get update
-            apt-get install -y \
-              libgbm1 \
-              libnspr4 \
-              libnss3 \
-              libu2f-udev \
-              libvulkan1 \
-              xdg-utils \
-              fonts-liberation \
-              gnupg
-
-      - run:
-          name: Test Connectivity
-          command: |
-            curl -I https://dl.google.com/linux/chrome/deb/ || echo "Failed to connect to the Google Chrome repository."
-
-      - run:
-          name: Install Google Chrome
-          command: |
             apt-get install -y google-chrome-stable || (echo "Failed to install Google Chrome. Trying alternative method." && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt-get install -y ./google-chrome-stable_current_amd64.deb)
 
       - run:
