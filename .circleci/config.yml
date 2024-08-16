@@ -27,7 +27,7 @@ jobs:
               libvulkan1 \
               xdg-utils \
               fonts-liberation \
-              --fix-missing
+              gnupg
 
       - run:
           name: Install Maven
@@ -39,12 +39,16 @@ jobs:
             rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
       - run:
-          name: Add Chrome Repository and Install Chrome
+          name: Add Google Chrome Repository
           command: |
             curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
             echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
             apt-get update
-            apt-get install -y google-chrome-stable
+
+      - run:
+          name: Install Google Chrome
+          command: |
+            apt-get install -y google-chrome-stable || (echo "Failed to install Google Chrome. Check if the repository URL is correct or if there are any connectivity issues.")
 
       - run:
           name: Install ChromeDriver
