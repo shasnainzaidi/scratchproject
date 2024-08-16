@@ -33,10 +33,15 @@ jobs:
           name: Install Maven
           command: |
             MAVEN_VERSION=3.9.0
-            curl -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-            tar xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/
-            ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
-            rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            curl -f -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            if [ $? -eq 0 ]; then
+              tar xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/
+              ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
+              rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            else
+              echo "Failed to download Maven."
+              exit 1
+            fi
 
       - run:
           name: Install Chrome
