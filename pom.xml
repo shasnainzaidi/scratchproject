@@ -20,7 +20,11 @@
             <artifactId>selenium-java</artifactId>
             <version>4.23.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>4.23.1</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas -->
         <dependency>
             <groupId>org.apache.poi</groupId>
