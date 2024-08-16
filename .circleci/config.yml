@@ -3,7 +3,7 @@ version: 2.1
 executors:
   maven-executor:
     docker:
-      - image: openjdk:20-jdk
+      - image: openjdk:20-jdk-bullseye
     working_directory: ~/repo
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
           name: Install Chrome
           command: |
             curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb
-            sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -f
+            dpkg -i google-chrome-stable_current_amd64.deb || apt-get install -f
 
       - run:
           name: Install ChromeDriver
@@ -41,8 +41,8 @@ jobs:
             CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
             curl -sSL "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -o chromedriver_linux64.zip
             unzip chromedriver_linux64.zip
-            sudo mv chromedriver /usr/local/bin/chromedriver
-            sudo chmod +x /usr/local/bin/chromedriver
+            mv chromedriver /usr/local/bin/chromedriver
+            chmod +x /usr/local/bin/chromedriver
 
       - run:
           name: Install Maven Dependencies
