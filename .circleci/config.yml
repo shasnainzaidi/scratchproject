@@ -27,17 +27,12 @@ jobs:
               libvulkan1 \
               xdg-utils \
               fonts-liberation \
-              file \ 
               --fix-missing
 
       - run:
           name: Install Maven
           command: |
             curl -sSL https://apache.org/dyn/closer.cgi/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.tar.gz -o maven.tar.gz
-            if [ $(file maven.tar.gz | grep -c 'gzip compressed data') -eq 0 ]; then
-              echo "File is not a gzip file"
-              exit 1
-            fi
             tar -xzf maven.tar.gz
             mv apache-maven-3.9.0 /opt/maven
             ln -s /opt/maven/bin/mvn /usr/local/bin/mvn
