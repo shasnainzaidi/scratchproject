@@ -33,8 +33,8 @@ jobs:
           name: Install Maven
           command: |
             MAVEN_VERSION=3.3.1
-            echo "Downloading Maven version ${MAVEN_VERSION}"
-            curl -f -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            echo "Downloading Maven version ${3.3.1}"
+            curl -f -o /tmp/apache-maven-${3.3.1}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
         # Check file type
             file /tmp/apache-maven-${3.3.1}-bin.tar.gz
