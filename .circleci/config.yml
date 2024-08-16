@@ -34,7 +34,7 @@ jobs:
               || { echo "Failed to install dependencies. Exiting." && exit 1; }
 
       - run:
-          name: Install Maven
+          name: Download and Install Maven
           command: |
             MAVEN_VERSION=3.3.1
             MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
