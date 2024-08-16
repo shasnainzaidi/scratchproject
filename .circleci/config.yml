@@ -76,8 +76,9 @@ jobs:
             chmod +x /usr/local/bin/chromedriver
 
       - run:
-          name: Install Maven Dependencies
-          command: mvn install -DskipTests
+           name: Install Maven Dependencies
+           command: |
+             mvn clean install -U -DskipTests -X
 
       - run:
           name: Run Tests
