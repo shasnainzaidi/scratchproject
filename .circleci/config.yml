@@ -38,14 +38,23 @@ jobs:
           command: |
             MAVEN_VERSION=3.3.1
             echo "Downloading Maven version ${MAVEN_VERSION}"
-            curl -f -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+            curl -f -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
             
+            # Check if the download was successful
+            if [ ! -f /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz ]; then
+              echo "Download failed or file not found!"
+              exit 1
+            fi
+            
+            # Print first few lines to check content (optional for debugging)
+            head -n 20 /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+
             # Extract Maven
             tar xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || {
               echo "Failed to extract Maven. Exiting."
               exit 1
             }
-            
+
             ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
             rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
