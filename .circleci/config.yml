@@ -32,16 +32,24 @@ jobs:
       - run:
           name: Install Maven
           command: |
-            MAVEN_VERSION=3.9.0
+            MAVEN_VERSION=3.3.1
+            echo "Downloading Maven version ${MAVEN_VERSION}"
             curl -f -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-            if [ $? -eq 0 ]; then
-              tar xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/
-              ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
-              rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-            else
-              echo "Failed to download Maven."
-              exit 1
-            fi
+
+        # Check file type
+            file /tmp/apache-maven-${3.3.1}-bin.tar.gz
+        
+        # Print first few lines to check content
+            head -n 20 /tmp/apache-maven-${3.3.1}-bin.tar.gz
+        
+        # Extract Maven
+            tar xzvf /tmp/apache-maven-${3.3.1}-bin.tar.gz -C /opt/ || {
+            echo "Failed to extract Maven. Exiting."
+            exit 1
+            }
+            ln -s /opt/apache-maven-${3.3.1}/bin/mvn /usr/local/bin/mvn
+            rm /tmp/apache-maven-${3.3.1}-bin.tar.gz
+
 
       - run:
           name: Install Chrome
