@@ -30,8 +30,8 @@ jobs:
               xdg-utils \
               fonts-liberation \
               gnupg \
-              # Install file command
-              file
+              file \
+              || { echo "Failed to install dependencies. Exiting." && exit 1; }
 
       - run:
           name: Install Maven
@@ -39,9 +39,11 @@ jobs:
             MAVEN_VERSION=3.3.1
             MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
             echo "Downloading Maven from $MAVEN_URL"
-            curl -fSL -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz $MAVEN_URL || (echo "Failed to download Maven. Exiting." && exit 1)
-            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz || (echo "Failed to verify Maven file type. Exiting." && exit 1)
-            tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || (echo "Failed to extract Maven. Exiting." && exit 1)
+            curl -fSL -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz $MAVEN_URL || { echo "Failed to download Maven. Exiting." && exit 1; }
+            echo "Checking Maven file type"
+            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz || { echo "Failed to verify Maven file type. Exiting." && exit 1; }
+            echo "Extracting Maven"
+            tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || { echo "Failed to extract Maven. Exiting." && exit 1; }
             ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
             rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
@@ -51,7 +53,7 @@ jobs:
             curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
             echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
             apt-get update
-            apt-get install -y google-chrome-stable || (echo "Failed to install Google Chrome. Trying alternative method." && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt-get install -y ./google-chrome-stable_current_amd64.deb)
+            apt-get install -y google-chrome-stable || { echo "Failed to install Google Chrome. Trying alternative method." && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt-get install -y ./google-chrome-stable_current_amd64.deb; }
 
       - run:
           name: Install ChromeDriver
