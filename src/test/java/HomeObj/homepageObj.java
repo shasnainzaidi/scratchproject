@@ -52,6 +52,18 @@ public class homepageObj {
             "Mobile Phones for Sale in Pakistan | Mobile Phone Prices in Pakistan",// Expected title for Link 3
             "Jobs in Pakistan"  // Expected title for Link 4
     };
+    private String[] link2XPaths = {
+            "(//span[@class='_1fcb6673'])[5]",  // Link 1
+            "(//span[@class='_1fcb6673'])[6]",  // Link 2
+            "(//span[@class='_1fcb6673'])[7]",  // Link 3
+            "(//span[@class='_1fcb6673'])[8]"   // Link 4
+    };
+    private String[] expectedTitles2 = {
+            "Motorcycles for Sale in Pakistan | Motorcycle Prices in Pakistan",  // Expected title for Link 1
+            "Watches for Sale in Pakistan | Watches Prices in Pakistan", // Expected title for Link 2
+            "Books Price in Pakistan | Books for Sale in Pakistan",// Expected title for Link 3
+            "Dogs for Sale in Pakistan | Dog Prices in Pakistan"  // Expected title for Link 4
+    };
 
     private String baseURL = "https://www.olx.com.pk/";
 
@@ -76,5 +88,13 @@ public class homepageObj {
     // Method to return expected titles
     public String[] getExpectedTitles() {
         return expectedTitles;
+    }
+    public String[] getLink2XPaths() {
+        return link2XPaths;
+    }
+
+    // Method to return expected titles
+    public String[] getExpectedTitles2() {
+        return expectedTitles2;
     }
 }
