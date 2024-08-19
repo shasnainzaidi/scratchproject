@@ -5,6 +5,7 @@ import HomeObj.homepageObj;
 import concepts.configReader;
 import concepts.retryAnalyzer;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,11 +13,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 //@Listeners(testNGListeners.class)
 
@@ -26,17 +26,26 @@ public class homepage {
     private homepageObj homepg;
     private concepts.configReader configReader;
 
-    @BeforeTest
+
+
+    @BeforeMethod
     public void initialization(){
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
         configReader = new configReader();
-
+        driver = new ChromeDriver();
+        homepg = new homepageObj(driver);
     }
-@Test //(retryAnalyzer = retryAnalyzer.class)
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+
+    @Test //(retryAnalyzer = retryAnalyzer.class)
     public void homepageAdLocation(){
 
-        homepg = new homepageObj(driver);
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
     homepg.openURL();
@@ -64,14 +73,153 @@ public class homepage {
 
   Assert.assertEquals(l3Name, adLocation);
 
+}
+
+        @Test
+    public void allFooters(){
+            int timeout = Integer.parseInt(configReader.getProperty("timeout"));
+
+            // Open the main URL
+            homepg.openURL();
+            driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
 
+            String[] linkXPaths = homepg.getLinkXPaths();
+
+            // Expected titles after redirection for each link
+            String[] expectedTitles = homepg.getExpectedTitles();
+            for (int i = 0; i < linkXPaths.length; i++) {
+                // Scroll down to the footer (optional based on your page structure)
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("window.scrollBy(0, 5000);");
+
+                // Click on the link
+                driver.findElement(By.xpath(linkXPaths[i])).click();
+
+                String actualTitle = driver.getTitle();
+                System.out.println("Actual Page Title for Link " + (i+1) + ": " + actualTitle);
+
+                // Assert redirection success based on the page title
+                Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i+1) + " - Page title does not match");
+
+                driver.navigate().back();
+
+                // Implicit wait to ensure the main page is fully loaded before testing the next link
+                driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+            }
 
 
+            }
+    @Test
+    public void trendingSearches() {
+        int timeout = Integer.parseInt(configReader.getProperty("timeout"));
+
+   homepg.openURL();
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
 
+        String[] linkXPaths = homepg.getLink2XPaths();
 
+        // Expected titles after redirection for each link
+        String[] expectedTitles = homepg.getExpectedTitles2();
+        for (int i = 0; i < linkXPaths.length; i++) {
+            // Scroll down to the footer (optional based on your page structure)
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 5000);");
+
+            // Click on the link
+            driver.findElement(By.xpath(linkXPaths[i])).click();
+
+            String actualTitle = driver.getTitle();
+            System.out.println("Actual Page Title for Link " + (i+1) + ": " + actualTitle);
+
+            // Assert redirection success based on the page title
+            Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i+1) + " - Page title does not match");
+
+            driver.navigate().back();
+
+            // Implicit wait to ensure the main page is fully loaded before testing the next link
+            driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+
+        }
+
+
+        }
+    @Test
+    public void aboutUs(){
+        int timeout = Integer.parseInt(configReader.getProperty("timeout"));
+
+        homepg.openURL();
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+
+        String[] linkXPaths = homepg.getLink3XPaths();
+
+        // Expected titles after redirection for each link
+        String[] expectedTitles = homepg.getExpectedTitles3();
+        for (int i = 0; i < linkXPaths.length; i++) {
+            // Scroll down to the footer (optional based on your page structure)
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 5000);");
+
+            // Click on the link
+            driver.findElement(By.xpath(linkXPaths[i])).click();
+
+            String actualTitle = driver.getTitle();
+            System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
+
+            // Assert redirection success based on the page title
+            Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
+
+            driver.navigate().back();
+
+            // Implicit wait to ensure the main page is fully loaded before testing the next link
+            driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+
+        }
+
+    }
+    @Test
+    public void olxFooter() {
+        int timeout = Integer.parseInt(configReader.getProperty("timeout"));
+
+        homepg.openURL();
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+
+        String[] linkXPaths = homepg.getLink4XPaths();
+
+        // Expected titles after redirection for each link
+        String[] expectedTitles = homepg.getExpectedTitles4();
+        for (int i = 0; i < linkXPaths.length; i++) {
+            // Scroll down to the footer (optional based on your page structure)
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 5000);");
+
+            // Click on the link
+            driver.findElement(By.xpath(linkXPaths[i])).click();
+            String actualTitle = driver.getTitle();
+            System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
+
+            // Assert redirection success based on the page title
+            Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
+
+            driver.navigate().back();
+
+            // Implicit wait to ensure the main page is fully loaded before testing the next link
+            driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+
+        }
+
+    }
 }
 
 
-}
+
+
+
+
+
+
+
+
+
+

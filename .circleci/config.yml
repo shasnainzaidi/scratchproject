@@ -3,7 +3,7 @@ version: 2.1
 executors:
   maven-executor:
     docker:
-      - image: circleci/openjdk:11.0
+      - image: openjdk:20-jdk-bullseye
     working_directory: ~/repo
 
 jobs:
@@ -13,22 +13,14 @@ jobs:
       - checkout
 
       - run:
-          name: Install Maven Dependencies
-          command: mvn install -DskipTests
-
-      - run:
-         name: Install Chrome
-         command: |
-           curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb
-           sudo dpkg -i google-chrome-stable_current_amd64.deb
-           sudo apt-get install -f
-      - run:
           name: Install Dependencies
           command: |
-            sudo apt-get update
-            sudo apt-get install -y \
+            apt-get update
+            apt-get install -y \
               wget \
               curl \
+              tar \
+              gzip \
               unzip \
               libgbm1 \
               libnspr4 \
@@ -36,19 +28,50 @@ jobs:
               libu2f-udev \
               libvulkan1 \
               xdg-utils \
-              fonts-liberation
+              fonts-liberation \
+              gnupg \
+              file \
+              || { echo "Failed to install dependencies. Exiting." && exit 1; }
+
+      - run:
+          name: Download and Install Maven
+          command: |
+            MAVEN_VERSION=3.3.1
+            MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+            echo "Downloading Maven from $MAVEN_URL"
+            curl -fSL -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz $MAVEN_URL || { echo "Failed to download Maven. Exiting." && exit 1; }
+            echo "Checking Maven file type"
+            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz || { echo "Failed to verify Maven file type. Exiting." && exit 1; }
+            echo "Extracting Maven"
+            tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || { echo "Failed to extract Maven. Exiting." && exit 1; }
+            ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
+            rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+
+      - run:
+          name: Install Google Chrome
+          command: |
+            curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
+            apt-get update
+            apt-get install -y google-chrome-stable || { echo "Failed to install Google Chrome. Trying alternative method." && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt-get install -y ./google-chrome-stable_current_amd64.deb; }
 
       - run:
           name: Install ChromeDriver
           command: |
             CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-            curl -sSL "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -o chromedriver_linux64.zip
-            unzip chromedriver_linux64.zip
-            sudo mv chromedriver /usr/local/bin/chromedriver
-            sudo chmod +x /usr/local/bin/chromedriver
+            curl -sSL "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -o /tmp/chromedriver_linux64.zip
+            unzip /tmp/chromedriver_linux64.zip -d /tmp
+            mv /tmp/chromedriver /usr/local/bin/chromedriver
+            chmod +x /usr/local/bin/chromedriver
+            rm /tmp/chromedriver_linux64.zip
+
+      - run:
+          name: Install Maven Dependencies
+          command: mvn clean install -U -DskipTests -X
+
       - run:
           name: Run Tests
-          command: mvn clean test
+          command: mvn test
 
       - run:
           name: Generate Allure Report

@@ -27,8 +27,7 @@ public class Logins{
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--headless"); // Optional: Run Chrome in headless mode
-        WebDriver driver = new ChromeDriver(options);
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
 
     }
 
