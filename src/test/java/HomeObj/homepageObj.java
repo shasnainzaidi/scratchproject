@@ -65,6 +65,32 @@ public class homepageObj {
             "Dogs for Sale in Pakistan | Dog Prices in Pakistan"  // Expected title for Link 4
     };
 
+    private String[] link3XPaths = {
+            "(//span[@class='_1fcb6673'])[9]",  // Link 1
+            "(//span[@class='_1fcb6673'])[10]",  // Link 2
+            "(//span[@class='_1fcb6673'])[11]",  // Link 3
+            "(//span[@class='_1fcb6673'])[12]"   // Link 4
+    };
+    private String[] expectedTitles3 = {
+            "Dubizzle Group – Formerly EMPG",  // Expected title for Link 1
+            "Homepage | OLX Blog", // Expected title for Link 2
+            "How can you contact Us? – OLX PK",// Expected title for Link 3
+            "OLX For Business"  // Expected title for Link 4
+    };
+
+
+    private String[] link4XPaths = {
+            "(//span[@class='_1fcb6673'])[13]",  // Link 1
+            "(//span[@class='_1fcb6673'])[14]",  // Link 2
+            "(//span[@class='_1fcb6673'])[15]",  // Link 3
+            "(//span[@class='_1fcb6673'])[16]"   // Link 4
+    };
+    private String[] expectedTitles4 = {
+            "OLX PK",  // Expected title for Link 1
+            "Sitemap Most Popular", // Expected title for Link 2
+            "What are the terms of use? – OLX PK",// Expected title for Link 3
+            "Legal & Privacy information – OLX PK"  // Expected title for Link 4
+    };
     private String baseURL = "https://www.olx.com.pk/";
 
     public void openURL(){
@@ -97,4 +123,21 @@ public class homepageObj {
     public String[] getExpectedTitles2() {
         return expectedTitles2;
     }
+    public String[] getLink3XPaths() {
+        return link3XPaths;
+    }
+
+    // Method to return expected titles
+    public String[] getExpectedTitles3() {
+        return expectedTitles3;
+    }
+    public String[] getLink4XPaths() {
+        return link4XPaths;
+    }
+
+    // Method to return expected titles
+    public String[] getExpectedTitles4() {
+        return expectedTitles4;
+    }
+
 }
