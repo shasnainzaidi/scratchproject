@@ -84,20 +84,10 @@ public class homepage {
             driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
 
-            String[] linkXPaths = {
-                    "(//span[@class='_1fcb6673'])[1]",  // Link 1
-                    "(//span[@class='_1fcb6673'])[2]",  // Link 2
-                    "(//span[@class='_1fcb6673'])[3]",  // Link 3
-                    "(//span[@class='_1fcb6673'])[4]"   // Link 4
-            };
+            String[] linkXPaths = homepg.getLinkXPaths();
 
             // Expected titles after redirection for each link
-            String[] expectedTitles = {
-                    "Cars for Sale in Pakistan",  // Expected title for Link 1
-                    "Apartments for Rent in Pakistan | Flats for Rent in Pakistan", // Expected title for Link 2
-                    "Mobile Phones for Sale in Pakistan | Mobile Phone Prices in Pakistan",// Expected title for Link 3
-                    "Jobs in Pakistan"  // Expected title for Link 4
-            };
+            String[] expectedTitles = homepg.getExpectedTitles();
             for (int i = 0; i < linkXPaths.length; i++) {
                 // Scroll down to the footer (optional based on your page structure)
                 JavascriptExecutor js = (JavascriptExecutor) driver;

@@ -40,7 +40,18 @@ public class homepageObj {
     public WebElement clickGallery;
 
 
-
+    private String[] linkXPaths = {
+            "(//span[@class='_1fcb6673'])[1]",  // Link 1
+            "(//span[@class='_1fcb6673'])[2]",  // Link 2
+            "(//span[@class='_1fcb6673'])[3]",  // Link 3
+            "(//span[@class='_1fcb6673'])[4]"   // Link 4
+    };
+    private String[] expectedTitles = {
+            "Cars for Sale in Pakistan",  // Expected title for Link 1
+            "Apartments for Rent in Pakistan | Flats for Rent in Pakistan", // Expected title for Link 2
+            "Mobile Phones for Sale in Pakistan | Mobile Phone Prices in Pakistan",// Expected title for Link 3
+            "Jobs in Pakistan"  // Expected title for Link 4
+    };
 
     private String baseURL = "https://www.olx.com.pk/";
 
@@ -56,5 +67,14 @@ public class homepageObj {
     public homepageObj (WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+    // Method to return link XPaths
+    public String[] getLinkXPaths() {
+        return linkXPaths;
+    }
+
+    // Method to return expected titles
+    public String[] getExpectedTitles() {
+        return expectedTitles;
     }
 }
