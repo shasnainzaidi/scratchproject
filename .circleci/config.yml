@@ -3,7 +3,7 @@ version: 2.1
 executors:
   java-executor:
     docker:
-      - image: circleci/openjdk:20-bullseye
+      - image: cimg/openjdk:20.0
     working_directory: ~/repo
 
 jobs:
