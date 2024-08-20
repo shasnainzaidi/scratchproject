@@ -1,84 +1,50 @@
 version: 2.1
 
 executors:
-  maven-executor:
+  java-executor:
     docker:
-      - image: openjdk:20-jdk-bullseye
+      - image: circleci/openjdk:20-bullseye
     working_directory: ~/repo
 
 jobs:
-  build:
-    executor: maven-executor
+  test:
+    executor: java-executor
     steps:
       - checkout
 
-      - run:
-          name: Install Dependencies
-          command: |
-            apt-get update
-            apt-get install -y \
-              wget \
-              curl \
-              tar \
-              gzip \
-              unzip \
-              libgbm1 \
-              libnspr4 \
-              libnss3 \
-              libu2f-udev \
-              libvulkan1 \
-              xdg-utils \
-              fonts-liberation \
-              gnupg \
-              file \
-              || { echo "Failed to install dependencies. Exiting." && exit 1; }
+      # Cache dependencies to speed up builds
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
 
-      - run:
-          name: Download and Install Maven
-          command: |
-            MAVEN_VERSION=3.3.1
-            MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
-            echo "Downloading Maven from $MAVEN_URL"
-            curl -fSL -o /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz $MAVEN_URL || { echo "Failed to download Maven. Exiting." && exit 1; }
-            echo "Checking Maven file type"
-            file /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz || { echo "Failed to verify Maven file type. Exiting." && exit 1; }
-            echo "Extracting Maven"
-            tar -xzvf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/ || { echo "Failed to extract Maven. Exiting." && exit 1; }
-            ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
-            rm /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-
-      - run:
-          name: Install Google Chrome
-          command: |
-            curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
-            apt-get update
-            apt-get install -y google-chrome-stable || { echo "Failed to install Google Chrome. Trying alternative method." && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt-get install -y ./google-chrome-stable_current_amd64.deb; }
-
-      - run:
-          name: Install ChromeDriver
-          command: |
-            CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-            curl -sSL "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -o /tmp/chromedriver_linux64.zip
-            unzip /tmp/chromedriver_linux64.zip -d /tmp
-            mv /tmp/chromedriver /usr/local/bin/chromedriver
-            chmod +x /usr/local/bin/chromedriver
-            rm /tmp/chromedriver_linux64.zip
-
+      # Install dependencies
       - run:
           name: Install Maven Dependencies
-          command: mvn clean install -U -DskipTests -X
+          command: mvn dependency:go-offline
 
+      # Save dependencies to cache
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+      # Run tests
       - run:
           name: Run Tests
-          command: mvn test
+          command: mvn test -Dsurefire.suiteXmlFiles=src/main/resources/testng1.xml
 
-      - run:
-          name: Generate Allure Report
-          command: mvn allure:report
+      # Store test results
+      - store_test_results:
+          path: target/surefire-reports
+
+      # Store artifacts (optional)
+      - store_artifacts:
+          path: target
+          destination: artifacts
 
 workflows:
   version: 2
-  build_and_test:
+  test_workflow:
     jobs:
-      - build
+      - test
