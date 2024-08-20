@@ -43,7 +43,7 @@ public class homepage {
     }
 
 
-    @Test //(retryAnalyzer = retryAnalyzer.class)
+    @Test (priority=1)//(retryAnalyzer = retryAnalyzer.class)
     public void homepageAdLocation(){
 
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
@@ -75,7 +75,7 @@ public class homepage {
 
 }
 
-        @Test
+        @Test (priority=2)
     public void allFooters(){
             int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
@@ -110,7 +110,7 @@ public class homepage {
 
 
             }
-    @Test
+    @Test (priority=3)
     public void trendingSearches() {
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
@@ -145,7 +145,7 @@ public class homepage {
 
 
         }
-    @Test
+    @Test (priority=4)
     public void aboutUs(){
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
