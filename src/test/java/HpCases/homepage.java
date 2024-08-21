@@ -35,9 +35,11 @@ public class homepage {
         configReader = new configReader();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        WebDriver driver = new ChromeDriver(options);
+
+        this.driver = new ChromeDriver(options);
         homepg = new homepageObj(driver);
     }
     @AfterMethod
