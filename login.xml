@@ -4,6 +4,9 @@
     <test verbose="2" preserve-order="true" name="Homepage Test">
         <classes>
             <class name="HpCases.homepage">
+                <methods>
+                    <include name="back2Top" />
+                </methods>
             </class>
         </classes>
     </test>
