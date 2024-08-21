@@ -210,8 +210,6 @@ public class homepage {
 
             // Assert redirection success based on the page title
             Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
-            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
             driver.navigate().back();
 
