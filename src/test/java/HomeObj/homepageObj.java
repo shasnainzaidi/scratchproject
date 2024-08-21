@@ -39,6 +39,10 @@ public class homepageObj {
     @FindBy(xpath = "//label[1]//*[name()='svg']")
     public WebElement clickGallery;
 
+    @FindBy(css = ".ce4a27bf")
+    public WebElement back2Top;
+
+
 
     private String[] linkXPaths = {
             "(//span[@class='_1fcb6673'])[1]",  // Link 1

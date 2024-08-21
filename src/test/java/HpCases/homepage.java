@@ -210,6 +210,21 @@ public class homepage {
         }
 
     }
+    @Test
+    public void back2Top(){
+        int timeout = Integer.parseInt(configReader.getProperty("timeout"));
+
+        homepg.openURL();
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0, 5000);");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));// 10 seconds timeout
+        wait.until(ExpectedConditions.visibilityOf(homepg.back2Top));
+        homepg.back2Top.click();
+
+
+    }
+
 }
 
 
