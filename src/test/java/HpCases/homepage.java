@@ -40,6 +40,8 @@ public class homepage {
         options.addArguments("--disable-dev-shm-usage");
 
         this.driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+
         homepg = new homepageObj(driver);
     }
     @AfterMethod
@@ -208,6 +210,8 @@ public class homepage {
 
             // Assert redirection success based on the page title
             Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
+            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
             driver.navigate().back();
 
