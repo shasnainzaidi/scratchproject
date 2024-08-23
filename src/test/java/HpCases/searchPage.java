@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 public class searchPage {
     private WebDriver driver;
     private concepts.configReader configReader;
+    private homepageObj homepage;
 
     @BeforeMethod
     public void initialization(){
@@ -20,6 +21,7 @@ public class searchPage {
         configReader = new configReader();
         this.driver = new ChromeDriver();
         driver.manage().window().maximize();
+        homepage = new homepageObj(driver) ;
 
     }
 
@@ -28,6 +30,7 @@ public class searchPage {
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
         String url = configReader.getURL();
         driver.get(url);
+                
 
 
     }
