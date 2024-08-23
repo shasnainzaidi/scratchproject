@@ -95,10 +95,10 @@ public class homepageObj {
             "What are the terms of use? – OLX PK",// Expected title for Link 3
             "Legal & Privacy information – OLX PK"  // Expected title for Link 4
     };
-    private String baseURL = "https://www.olx.com.pk/";
+    private String prodURL = "https://www.olx.com.pk/";
 
     public void openURL(){
-        driver.get(baseURL);
+        driver.get(prodURL);
     }
 
 

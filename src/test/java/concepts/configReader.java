@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class configReader {
+    private static final String TEST_ENV ="TEST_ENV" ;
     private Properties properties;
 
     public configReader() {
@@ -20,7 +21,20 @@ public class configReader {
 
     }
 
+
     public String getProperty(String key) {
         return properties.getProperty(key);
+    }
+    public String getURL(){
+    String env = System.getenv(TEST_ENV);
+        if (env == null) {
+            throw new IllegalStateException("Environment variable TEST_ENV is not set");
+        }
+        String url = properties.getProperty(env);
+        if (url == null) {
+            throw new IllegalArgumentException("No URL found for environment: " + env);
+        }
+        return url;
+
     }
 }

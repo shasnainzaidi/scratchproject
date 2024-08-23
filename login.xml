@@ -3,9 +3,9 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Homepage Test">
         <classes>
-            <class name="HpCases.homepage">
+            <class name="HpCases.searchPage">
                 <methods>
-                    <include name="back2Top" />
+                    <include name="navigate2Search" />
                 </methods>
             </class>
         </classes>

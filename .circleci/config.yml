@@ -6,6 +6,8 @@ executors:
     docker:
       - image: cimg/openjdk:20.0-browsers
     working_directory: ~/repo
+    environment:
+      TEST_ENV: prod
 
 jobs:
   test:
