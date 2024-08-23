@@ -42,6 +42,12 @@ public class homepageObj {
     @FindBy(css = ".ce4a27bf")
     public WebElement back2Top;
 
+    @FindBy(css = "._11996820")
+    public WebElement searchButton;
+
+    @FindBy(css = "._7c57f8f7")
+    public WebElement searchTitle;
+
 
 
     private String[] linkXPaths = {
