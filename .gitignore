@@ -19,6 +19,7 @@ target/
 /excel/
 /target/
 /apache-maven-3.3.1-bin.tar.gz/
+/README.md/
 
 ### Eclipse ###
 .apt_generated
