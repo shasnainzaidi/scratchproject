@@ -11,6 +11,14 @@ target/
 *.iws
 *.iml
 *.ipr
+/.idea/
+/allure-results/
+/logs/
+/test-output/
+/.allure/
+/excel/
+/target/
+/apache-maven-3.3.1-bin.tar.gz/
 
 ### Eclipse ###
 .apt_generated
