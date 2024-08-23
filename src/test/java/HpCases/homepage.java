@@ -227,7 +227,7 @@ public class homepage {
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 5000);");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));// 10 seconds timeout
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.visibilityOf(homepg.back2Top));
         homepg.back2Top.click();
 
