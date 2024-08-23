@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -31,8 +32,16 @@ public class searchPage {
     public void navigate2Search(){
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
         String url = configReader.getURL();
+
+        Reporter.log("Open the URL", true);
+
         driver.get(url);
+
+        Reporter.log("Click on search button", true);
+
         homepage.searchButton.click();
+
+        Reporter.log("Verify if search title is as expected", true);
 
         WebElement searchTitle = homepage.searchTitle;
         String searchTitleText = searchTitle.getText();
