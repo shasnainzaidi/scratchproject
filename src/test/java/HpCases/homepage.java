@@ -117,7 +117,7 @@ public class homepage {
 }
 
         @Test (priority=2)
-    public void allFooters(){
+    public void popularCategories(){
             int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
             Reporter.log("Open the main URL", true);
@@ -137,6 +137,11 @@ public class homepage {
                 Reporter.log("// Click on the link", true);
                 driver.findElement(By.xpath(linkXPaths[i])).click();
 
+                try {
+                    Thread.sleep(2000);                 //1000 milliseconds is one second.
+                } catch(InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
                 String actualTitle = driver.getTitle();
                 System.out.println("Actual Page Title for Link " + (i+1) + ": " + actualTitle);
 
@@ -170,7 +175,11 @@ public class homepage {
 
             // Click on the link
             driver.findElement(By.xpath(linkXPaths[i])).click();
-
+            try {
+                Thread.sleep(1000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             String actualTitle = driver.getTitle();
             System.out.println("Actual Page Title for Link " + (i+1) + ": " + actualTitle);
 
@@ -204,7 +213,11 @@ public class homepage {
 
             // Click on the link
             driver.findElement(By.xpath(linkXPaths[i])).click();
-
+            try {
+                Thread.sleep(2000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             String actualTitle = driver.getTitle();
             System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
 
@@ -237,6 +250,12 @@ public class homepage {
 
             // Click on the link
             driver.findElement(By.xpath(linkXPaths[i])).click();
+
+            try {
+                Thread.sleep(2000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             String actualTitle = driver.getTitle();
             System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
 

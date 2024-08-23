@@ -54,10 +54,10 @@ public class homepageObj {
 
 
     private String[] linkXPaths = {
-            "(//span[@class='_1fcb6673'])[1]",  // Link 1
-            "(//span[@class='_1fcb6673'])[2]",  // Link 2
-            "(//span[@class='_1fcb6673'])[3]",  // Link 3
-            "(//span[@class='_1fcb6673'])[4]"   // Link 4
+            "//span[@class='_1fcb6673'][normalize-space()='Cars']",  // Link 1
+            "//span[normalize-space()='Flats for rent']",  // Link 2
+            "//span[@class='_1fcb6673'][normalize-space()='Mobile Phones']",  // Link 3
+            "//span[@class='_1fcb6673'][normalize-space()='Jobs']"   // Link 4
     };
     private String[] expectedTitles = {
             "Cars for Sale in Pakistan",  // Expected title for Link 1
@@ -66,10 +66,10 @@ public class homepageObj {
             "Jobs in Pakistan"  // Expected title for Link 4
     };
     private String[] link2XPaths = {
-            "(//span[@class='_1fcb6673'])[5]",  // Link 1
-            "(//span[@class='_1fcb6673'])[6]",  // Link 2
-            "(//span[@class='_1fcb6673'])[7]",  // Link 3
-            "(//span[@class='_1fcb6673'])[8]"   // Link 4
+            "//span[@class='_1fcb6673'][normalize-space()='Bikes']",  // Link 1
+            "//span[normalize-space()='Watches']",  // Link 2
+            "//span[normalize-space()='Books']",  // Link 3
+            "//span[normalize-space()='Dogs']"   // Link 4
     };
     private String[] expectedTitles2 = {
             "Motorcycles for Sale in Pakistan | Motorcycle Prices in Pakistan",  // Expected title for Link 1
@@ -79,10 +79,10 @@ public class homepageObj {
     };
 
     private String[] link3XPaths = {
-            "(//span[@class='_1fcb6673'])[9]",  // Link 1
-            "(//span[@class='_1fcb6673'])[10]",  // Link 2
-            "(//span[@class='_1fcb6673'])[11]",  // Link 3
-            "(//span[@class='_1fcb6673'])[12]"   // Link 4
+            "//span[normalize-space()='About Dubizzle Group']",  // Link 1
+            "//span[normalize-space()='OLX Blog']",  // Link 2
+            "//span[normalize-space()='Contact Us']",  // Link 3
+            "//span[normalize-space()='OLX for Businesses']"   // Link 4
     };
     private String[] expectedTitles3 = {
             "Dubizzle Group – Formerly EMPG",  // Expected title for Link 1
@@ -93,10 +93,10 @@ public class homepageObj {
 
 
     private String[] link4XPaths = {
-            "(//span[@class='_1fcb6673'])[13]",  // Link 1
-            "(//span[@class='_1fcb6673'])[14]",  // Link 2
-            "(//span[@class='_1fcb6673'])[15]",  // Link 3
-            "(//span[@class='_1fcb6673'])[16]"   // Link 4
+            "//span[normalize-space()='Help']",  // Link 1
+            "//span[normalize-space()='Sitemap']",  // Link 2
+            "//span[normalize-space()='Terms of use']",  // Link 3
+            "//span[normalize-space()='Privacy Policy']"   // Link 4
     };
     private String[] expectedTitles4 = {
             "OLX PK",  // Expected title for Link 1
