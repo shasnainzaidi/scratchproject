@@ -8,23 +8,26 @@ import org.openqa.selenium.support.PageFactory;
 public class homepageObj {
 
     public WebDriver driver;
-    @FindBy(xpath = "//input[@autocomplete='location-search']")
+    @FindBy(css = "input[placeholder='Location or Compound']")
     public WebElement l1Location;
 
-    @FindBy(xpath = "(//span[@class='_8206696c'])[8]")
+    @FindBy(xpath = "//span[normalize-space()='Punjab, Pakistan']")
     public WebElement l2Location;
 
-    @FindBy(xpath = "(//span[@class='_8206696c'])[3]")
+    @FindBy(xpath = "(//span[contains(text(),'Lahore, Punjab')])[1]")
     public WebElement l3Location;
+
+    @FindBy(xpath = "//span[normalize-space()='Aabpara Coop Housing Society, Lahore']")
+    public WebElement l4Location;
 
     @FindBy(xpath = "(//div[@class='_9dfeb3c2'])[63]")
     public WebElement firstAd;
 
-    @FindBy(xpath = "//div[@class='_1ee53078']")
+    @FindBy(css = "._1ee53078")
     public WebElement adLocation;
 
 
-    @FindBy(xpath ="(//input[@class='_0c2ffce3'])[1]")
+    @FindBy(css ="div[aria-label='Location input'] div div[class='_1db27fa0']")
     public WebElement homeLocation;
 
     @FindBy(xpath = "//img[@alt='Go to chat']")

@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -39,7 +40,7 @@ public class homepage {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
 
-        this.driver = new ChromeDriver(options);
+        this.driver = new ChromeDriver();
         driver.manage().window().maximize();
 
         homepg = new homepageObj(driver);
@@ -57,30 +58,61 @@ public class homepage {
 
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
+    Reporter.log("Open the URL", true);
     homepg.openURL();
-        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-        homepg.l1Location.click();
-        homepg.l2Location.click();
-
-    homepg.l1Location.click();
-        homepg.l3Location.click();
     driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
+    Reporter.log("Click on Location Bar", true);
+    homepg.l1Location.click();
 
-    String l3Name = homepg.homeLocation.getText();
-        System.out.println(l3Name);
+    Reporter.log("Select L2 Location", true);
+
+    homepg.l2Location.click();
+
+    Reporter.log("Select L1 Location", true);
+    homepg.l1Location.click();
+
+    Reporter.log("Select L3 Location", true);
+    homepg.l3Location.click();
+
+        homepg.l1Location.click();
+
+    Reporter.log("Select L3 Location", true);
+    homepg.l4Location.click();
+
+    driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+
+    Reporter.log("Verify if the location is as expected on searchpage", true);
+
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        String expectedLocation = homepg.l4Location.getText();
+        System.out.println(expectedLocation);
+
+    Reporter.log("Scroll the page", true);
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("window.scrollBy(0, 2000);");
+    js.executeScript("window.scrollBy(0, 1500);");
 
-    System.out.println("scroller moved");
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(homepg.firstAd));
 
-   // homepg.firstAd.click();
-    String adLocation = homepg.adLocation.getText();
+    Reporter.log("Click on 1st Ad", true);
+    homepg.firstAd.click();
+        try {
+            Thread.sleep(2000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        Reporter.log("get ad location", true);
 
-  Assert.assertEquals(l3Name, adLocation);
+    String actualLocation = homepg.adLocation.getText();
+    System.out.println(actualLocation + " is actual Location of Ad opened");
+
+  Assert.assertEquals (expectedLocation, actualLocation);
 
 }
 
@@ -88,21 +120,21 @@ public class homepage {
     public void allFooters(){
             int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
-            // Open the main URL
+            Reporter.log("Open the main URL", true);
             homepg.openURL();
             driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
 
             String[] linkXPaths = homepg.getLinkXPaths();
 
-            // Expected titles after redirection for each link
+            Reporter.log("Expected titles after redirection for each link", true);
             String[] expectedTitles = homepg.getExpectedTitles();
             for (int i = 0; i < linkXPaths.length; i++) {
-                // Scroll down to the footer (optional based on your page structure)
+                Reporter.log("Scroll down to the footer", true);
                 JavascriptExecutor js = (JavascriptExecutor) driver;
                 js.executeScript("window.scrollBy(0, 5000);");
 
-                // Click on the link
+                Reporter.log("// Click on the link", true);
                 driver.findElement(By.xpath(linkXPaths[i])).click();
 
                 String actualTitle = driver.getTitle();
