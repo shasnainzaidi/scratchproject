@@ -1,5 +1,6 @@
 package HomeObj;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,7 @@ public class Objects {
     @FindBy(xpath = "//input[@class='_0c2ffce3 _16f994ea _724f8860']")
     public WebElement phoneId;
 
-    @FindBy(xpath = "//img[@class='_42021e4e']")
+    @FindBy(css = "img[alt='User profile dropdown arrow']")
     public WebElement userDropdown;
 
     @FindBy(xpath = "//span[@class='_2454243d b7af14b4']")
@@ -46,25 +47,29 @@ public class Objects {
     private String email = "hasnain.xaidi1@gmail.com";
     private String expectedUserName = "Everything for “U”";
 
+    @Step("Opening the Website")
     public void openURL() {
         driver.get(baseURL);
     }
+
+    @Step("Entering the invalid email")
     public void enterInvalidEmail(){
         emailId.sendKeys(invlaidEmail);
-
     }
+
+    @Step("Entering the phone number")
     public void enterPhone(){
         phoneId.sendKeys(number);
-
     }
 
+    @Step("Entering the Email ID")
     public void enteremail(){
         emailId.sendKeys(email);
-
     }
+
+    @Step("Entering the password and click next")
     public void enterPassword(){
         password.sendKeys(pswrd);
-
     }
     public Objects(WebDriver driver){
         this.driver = driver;

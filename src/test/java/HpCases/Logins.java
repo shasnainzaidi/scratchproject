@@ -2,6 +2,8 @@ package HpCases;
 
 import concepts.configReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Description;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +15,8 @@ import HomeObj.Objects;
 
 
 import java.util.concurrent.TimeUnit;
-@Listeners(testNGListeners.class)
+//@Listeners(testNGListeners.class)
+@Listeners({AllureTestNg.class})
 public class Logins{
     private WebDriver driver;
     private Objects loginobj;
@@ -27,13 +30,14 @@ public class Logins{
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--headless"); // Optional: Run Chrome in headless mode
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
 
     }
 
 
 
 @Test (groups ="Sanity", priority = 1)
+  @Description("Verify login with Email")
     public void loginEmail(){
     loginobj = new Objects(driver);
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
@@ -54,6 +58,11 @@ loginobj.enterPassword();
     //click login
 loginobj.Login.click();
    // @Description("Assert if user has logged in or not")
+    try {
+        Thread.sleep(1000);                 //1000 milliseconds is one second.
+    } catch(InterruptedException ex) {
+        Thread.currentThread().interrupt();
+    }
 loginobj.userDropdown.click();
 WebElement userNameElement = loginobj.userNameElement;
     String userName = userNameElement.getText();
@@ -71,6 +80,7 @@ WebElement userNameElement = loginobj.userNameElement;
         }
     }
 @Test (groups ="Sanity", priority = 2)
+@Description("Verify login with Phone Number")
     public void loginPhone(){
 
     loginobj = new Objects(driver);
@@ -82,7 +92,6 @@ WebElement userNameElement = loginobj.userNameElement;
 
 
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS );
-
 
     loginobj.LoginPhone.click();
         loginobj.enterPhone();
@@ -99,6 +108,7 @@ WebElement userNameElement = loginobj.userNameElement;
 }
 
 @Test(groups = {"Sanity", "Smoke"}, priority = 3)
+@Description("Verify Email field validation")
     public void emailValidation(){
         //1. Imported the POM object class as driver
        try {
