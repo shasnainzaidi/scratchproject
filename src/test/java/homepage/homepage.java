@@ -1,4 +1,4 @@
-package hpcases;
+package homepage;
 
 import objects.homepageObj;
 import concepts.configReader;
@@ -170,7 +170,7 @@ public class homepage {
 
             driver.findElement(By.xpath(linkXPaths[i])).click();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }

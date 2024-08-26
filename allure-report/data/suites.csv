@@ -3,7 +3,7 @@
 "","10","simpleTest","Simple Test Suite","Sun Aug 25 03:05:14 PKT 2024","passed","Sun Aug 25 03:05:14 PKT 2024","hpcases.SimpleTest","Simple Test","hpcases.SimpleTest","simpleTest"
 "","16217","loginPhone","Default Suite","Sun Aug 25 02:12:20 PKT 2024","broken","Sun Aug 25 02:12:36 PKT 2024","hpcases.Logins","scratchproject","hpcases.Logins","loginPhone"
 "Verify login with Phone Number","17195","loginPhone","All Test Suite","Sun Aug 25 02:57:05 PKT 2024","broken","Sun Aug 25 02:57:22 PKT 2024","hpcases.Logins","Test on Chrome","hpcases.Logins","loginPhone"
-"","43718","allFooters","Default Suite","Fri Aug 23 12:20:19 PKT 2024","broken","Fri Aug 23 12:21:03 PKT 2024","hpcases.homepage","scratchproject","hpcases.homepage","allFooters"
+"","43718","allFooters","Default Suite","Fri Aug 23 12:20:19 PKT 2024","broken","Fri Aug 23 12:21:03 PKT 2024","homepage.homepage","scratchproject","homepage.homepage","allFooters"
 "","14413","loginEmail","Default Suite","Sun Aug 25 02:03:07 PKT 2024","broken","Sun Aug 25 02:03:21 PKT 2024","hpcases.Logins","scratchproject","hpcases.Logins","loginEmail"
 "Verify login with Email","28357","loginEmail","All Test Suite","Sun Aug 25 02:56:34 PKT 2024","broken","Sun Aug 25 02:57:02 PKT 2024","hpcases.Logins","Test on Edge","hpcases.Logins","loginEmail"
 "","5","navigate2Search","All Test Suite","Sun Aug 25 03:06:43 PKT 2024","broken","Sun Aug 25 03:06:43 PKT 2024","hpcases.searchPage","Homepage Test","hpcases.searchPage","navigate2Search"

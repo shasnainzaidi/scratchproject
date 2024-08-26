@@ -117,6 +117,28 @@ public class homepageObj {
             "https://help.olx.com.pk/hc/en-us/articles/4402989977487-What-are-the-terms-of-use-",// Expected title for Link 3
             "https://help.olx.com.pk/hc/en-us/categories/4402989237007-Legal-Privacy-information"  // Expected title for Link 4
     };
+
+    private String[] link5XPaths = {
+            "//span[normalize-space()='Mobiles']",  // Link 1
+            "//span[normalize-space()='Vehicles']",  // Link 2
+            "//span[normalize-space()='Property for Sale']",  // Link 3
+            "//span[normalize-space()='Property for Rent']"   // Link 4
+    };
+    private String[] expectedTitles5 = {
+            "Mobiles in Pakistan",  // Expected title for Link 1
+            "Vehicles in Pakistan", // Expected title for Link 2
+            "Property for Sale in Pakistan",// Expected title for Link 3
+            "Property for Sale in Pakistan"  // Expected title for Link 4
+    };
+    private String[] expectedURL5 = {
+            "https://www.olx.com.pk/mobiles_c1411",  // Expected URL for Link 1
+            "https://www.olx.com.pk/vehicles_c5", // Expected URL for Link 2
+            "https://www.olx.com.pk/property-for-sale_c2",// Expected title for Link 3
+            "https://www.olx.com.pk/property-for-rent_c3"  // Expected title for Link 4
+    };
+
+
+
     private String prodURL = "https://www.olx.com.pk/";
 
    @Step("Open URL")
@@ -174,6 +196,17 @@ public class homepageObj {
             return expectedURL4;
         }
 
+    public String[] getLink5XPaths() {
+        return link4XPaths;
+    }
+
+    // Method to return expected titles
+    public String[] getExpectedTitles5() {
+        return expectedTitles4;}
+
+    public String[] getExpectedURL5() {
+        return expectedURL4;
+    }
 
 
 }
