@@ -86,7 +86,7 @@ public class homepage {
     Reporter.log("Verify if the location is as expected on searchpage", true);
 
         try {
-            Thread.sleep(1000);                 //1000 milliseconds is one second.
+            Thread.sleep(1000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -104,7 +104,7 @@ public class homepage {
     Reporter.log("Click on 1st Ad", true);
     homepg.firstAd.click();
         try {
-            Thread.sleep(2000);                 //1000 milliseconds is one second.
+            Thread.sleep(2000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -139,19 +139,17 @@ public class homepage {
                 driver.findElement(By.xpath(linkXPaths[i])).click();
 
                 try {
-                    Thread.sleep(2000);                 //1000 milliseconds is one second.
+                    Thread.sleep(2000);
                 } catch(InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
                 String actualTitle = driver.getTitle();
                 System.out.println("Actual Page Title for Link " + (i+1) + ": " + actualTitle);
 
-                // Assert redirection success based on the page title
                 Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i+1) + " - Page title does not match");
 
                 driver.navigate().back();
 
-                // Implicit wait to ensure the main page is fully loaded before testing the next link
                 driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
             }
 
@@ -167,29 +165,24 @@ public class homepage {
 
         String[] linkXPaths = homepg.getLink2XPaths();
 
-        // Expected titles after redirection for each link
         String[] expectedTitles = homepg.getExpectedTitles2();
         for (int i = 0; i < linkXPaths.length; i++) {
-            // Scroll down to the footer (optional based on your page structure)
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 5000);");
 
-            // Click on the link
             driver.findElement(By.xpath(linkXPaths[i])).click();
             try {
-                Thread.sleep(1000);                 //1000 milliseconds is one second.
+                Thread.sleep(1000);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
             String actualTitle = driver.getTitle();
             System.out.println("Actual Page Title for Link " + (i+1) + ": " + actualTitle);
 
-            // Assert redirection success based on the page title
             Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i+1) + " - Page title does not match");
 
             driver.navigate().back();
 
-            // Implicit wait to ensure the main page is fully loaded before testing the next link
             driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
         }
@@ -206,35 +199,26 @@ public class homepage {
 
         String[] linkXPaths = homepg.getLink3XPaths();
 
-        // Expected titles after redirection for each link
-       // String[] expectedTitles = homepg.getExpectedTitles3();
-        String[] expectedURL = homepg.getExpectedURL3(); // Add a method in homepg to get expected URLs
+        String[] expectedURL = homepg.getExpectedURL3();
 
         for (int i = 0; i < linkXPaths.length; i++) {
-            // Scroll down to the footer (optional based on your page structure)
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 5000);");
 
-            // Click on the link
             driver.findElement(By.xpath(linkXPaths[i])).click();
             try {
-                Thread.sleep(2000);                 //1000 milliseconds is one second.
+                Thread.sleep(2000);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            //String actualTitle = driver.getTitle();
             String actualURL = driver.getCurrentUrl();
 
-            //System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
             System.out.println("Actual URL for Link " + (i + 1) + ": " + actualURL);
 
-            // Assert redirection success based on the page title
-            //Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
             Assert.assertEquals(actualURL, expectedURL[i], "Redirection failed for Link " + (i + 1) + " - URL does not match");
 
             driver.navigate().back();
 
-            // Implicit wait to ensure the main page is fully loaded before testing the next link
             driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
         }
@@ -249,36 +233,29 @@ public class homepage {
 
         String[] linkXPaths = homepg.getLink4XPaths();
 
-        // Expected titles after redirection for each link
-       // String[] expectedTitles = homepg.getExpectedTitles4();
-        String[] expectedURL = homepg.getExpectedURL4(); // Add a method in homepg to get expected URLs
+
+        String[] expectedURL = homepg.getExpectedURL4();
 
         for (int i = 0; i < linkXPaths.length; i++) {
-            // Scroll down to the footer (optional based on your page structure)
+
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 5000);");
 
-            // Click on the link
             driver.findElement(By.xpath(linkXPaths[i])).click();
 
             try {
-                Thread.sleep(2000);                 //1000 milliseconds is one second.
+                Thread.sleep(2000);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            //String actualTitle = driver.getTitle();
             String actualURL = driver.getCurrentUrl();
 
-            //System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
             System.out.println("Actual URL for Link " + (i + 1) + ": " + actualURL);
 
-            // Assert redirection success based on the page title
-           // Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
             Assert.assertEquals(actualURL, expectedURL[i], "Redirection failed for Link " + (i + 1) + " - URL does not match");
 
             driver.navigate().back();
 
-            // Implicit wait to ensure the main page is fully loaded before testing the next link
             driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
         }
