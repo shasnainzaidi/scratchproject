@@ -49,7 +49,7 @@ workflows:
   test_workflow:
     triggers:
       - schedule:
-          cron: "0 2 * * *"  # Runs daily at 02:00 UTC
+          cron: "05 10 * * *"  # Runs daily at 02:00 UTC
           filters:
             branches:
               only:
