@@ -1,9 +1,8 @@
-package MWebHpCases;
+package mobilewebhighpriority;
 
-import HomeObj.Objects;
+import objects.Objects;
 import concepts.configReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,13 +14,10 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class MwebLogins {
+public class mobileweb {
     private WebDriver driver;
     private Objects loginobj;
     private Properties properties;

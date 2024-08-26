@@ -1,18 +1,15 @@
-package HpCases;
+package hpcases;
 
 import concepts.configReader;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import io.qameta.allure.testng.AllureTestNg;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import HomeObj.Objects;
+import objects.Objects;
 
 
 import java.util.concurrent.TimeUnit;

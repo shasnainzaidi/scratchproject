@@ -1,9 +1,7 @@
-package HpCases;
+package hpcases;
 
-import HomeObj.Objects;
-import HomeObj.homepageObj;
+import objects.homepageObj;
 import concepts.configReader;
-import concepts.retryAnalyzer;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.testng.AllureTestNg;
@@ -20,7 +18,6 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 //@Listeners(testNGListeners.class)
 @Listeners({AllureTestNg.class})

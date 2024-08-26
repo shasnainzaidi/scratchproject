@@ -4,7 +4,7 @@
             name =
         </groups>
         <classes>
-            <class name="HpCases.Logins"/>
+            <class name="hpcases.Logins"/>
         </classes>
     </test>
 </suite>

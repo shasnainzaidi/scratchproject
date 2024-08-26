@@ -1,4 +1,4 @@
-package HpCases;
+package hpcases;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
