@@ -55,4 +55,4 @@ workflows:
               only:
                 - main
     jobs:
-      - build
+      - test
