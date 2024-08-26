@@ -46,7 +46,7 @@ jobs:
 
 workflows:
   version: 2
-  Scheduled:
+  build_and_test:
     triggers:
       - schedule:
           cron: "0 2 * * *"  # Runs daily at 02:00 UTC
@@ -55,4 +55,4 @@ workflows:
               only:
                 - main
     jobs:
-      - build
+      - test
