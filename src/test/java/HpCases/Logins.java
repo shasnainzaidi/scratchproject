@@ -3,6 +3,7 @@ package HpCases;
 import concepts.configReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +30,7 @@ public class Logins{
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless"); // Optional: Run Chrome in headless mode
+        options.addArguments("--headless");
         driver = new ChromeDriver();
 
     }
@@ -43,23 +44,16 @@ public class Logins{
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
 
-//1. Open website
     loginobj.openURL();
-    //2. click on login button
 loginobj.LoginBtn.click();
 driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );
-//3. click on continue with email
 loginobj.LoginEmail.click();
 
-    //4. Enter email
 loginobj.enteremail();
- //5. Enter password
 loginobj.enterPassword();
-    //click login
 loginobj.Login.click();
-   // @Description("Assert if user has logged in or not")
     try {
-        Thread.sleep(1000);                 //1000 milliseconds is one second.
+        Thread.sleep(1000);
     } catch(InterruptedException ex) {
         Thread.currentThread().interrupt();
     }
@@ -69,8 +63,6 @@ WebElement userNameElement = loginobj.userNameElement;
             System.out.println(userName);
              String expected= "Everything for “U”";
     Assert.assertEquals(userName, expected);
-
-   //3. Close the browser
 
     }
     @AfterMethod
@@ -110,22 +102,22 @@ WebElement userNameElement = loginobj.userNameElement;
 @Test(groups = {"Sanity", "Smoke"}, priority = 3)
 @Description("Verify Email field validation")
     public void emailValidation(){
-        //1. Imported the POM object class as driver
        try {
            loginobj = new Objects(driver);
-           //2. Opened base url
            loginobj.openURL();
-           //3. Timeout
+
            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-           //4. Click on login button
+
            loginobj.LoginBtn.click();
-           //5. Click on login with email
+
            loginobj.LoginEmail.click();
-           //6. Enter email
+
            loginobj.enterInvalidEmail();
-           //7. Navigate to password
+
            loginobj.enterPassword();
+
            loginobj.Login.click();
+
            String errorMessage = loginobj.emailErrorMessage.getText();
            System.out.println(errorMessage);
            String expectedMessage = "The e-mail address must be in the format of name@domain.com";
@@ -139,8 +131,6 @@ WebElement userNameElement = loginobj.userNameElement;
        }
        finally {
                 System.out.println("cant run the test");
-
-        //Assertion
 
 
        }

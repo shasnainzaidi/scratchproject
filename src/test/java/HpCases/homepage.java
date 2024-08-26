@@ -6,6 +6,7 @@ import concepts.configReader;
 import concepts.retryAnalyzer;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 //@Listeners(testNGListeners.class)
-
+@Listeners({AllureTestNg.class})
 public class homepage {
 
     private WebDriver driver;
