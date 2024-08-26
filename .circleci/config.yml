@@ -46,7 +46,11 @@ jobs:
 
 workflows:
   version: 2
-  test_workflow:
+  commit_workflow:
+    jobs:
+      - test
+
+  scheduled_workflow:
     triggers:
       - schedule:
           cron: "05 10 * * *"  # Runs daily at 02:00 UTC
