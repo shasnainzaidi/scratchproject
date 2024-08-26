@@ -29,24 +29,18 @@ public class detailPage {
             WebDriver driver = new ChromeDriver();
             Eyes eyes = new Eyes();
 
-            // Set your private API key.
             eyes.setApiKey("SiTp2npDN61077v5GYyuXWip214gWwtSKBgwo2cP4g2D4110");
 
             try {
-                // Start the test and set the browser's viewport size to 800x600.
                 eyes.open(driver, "Applitools Test", "My first Visual test!", new RectangleSize(800, 600));
 
-                // Navigate the browser to the "hello world!" web-site.
                 driver.get("https://www.olx.com.pk/item/realme-gt-mater-edition-5g-iid-1090853567");
 
-                // Visual checkpoint #1.
                 eyes.checkWindow("Before number viewed");
 
-                //2nd check
-                driver.findElement(By.xpath("//span[.='Show phone number']")).click();  // Click the button.
+                driver.findElement(By.xpath("//span[.='Show phone number']")).click();
                 eyes.checkWindow("After number viewed");
 
-                // End the test.
                 eyes.close();
             } finally {
                 driver.quit();

@@ -49,20 +49,15 @@ public class MwebLogins {
     public void loginEmail(){
     loginobj = new Objects(driver);
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
-//1. Open website
     loginobj.openURL();
-    //2. click on login button
     loginobj.LoginBtn.click();
-    driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );    //3. click on continue with email
+    driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );
     loginobj.LoginEmail.click();
 
-    //4. Enter email
 loginobj.enteremail();
 
-    //5. Enter password
-loginobj.enterPassword();    //click login
+loginobj.enterPassword();
 loginobj.Login.click();
-   // @Description(" Assert if user has logged in or not")
     loginobj.userDropdown.click();
             WebElement userNameElement = loginobj.userNameElement;
     String userName = userNameElement.getText();
