@@ -1,5 +1,6 @@
 package HomeObj;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -90,6 +91,12 @@ public class homepageObj {
             "How can you contact Us? – OLX PK",// Expected title for Link 3
             "OLX For Business"  // Expected title for Link 4
     };
+    private String[] expectedURL3 = {
+            "https://www.dubizzlegroup.com/",  // Expected URL for Link 1
+            "https://blog.olx.com.pk/", // Expected URL for Link 2
+            "https://help.olx.com.pk/hc/en-us/articles/4403042207631-How-can-you-contact-Us-",// Expected title for Link 3
+            "https://www.surveygizmo.com/s3/4910980/WP-Business-Form?source=Website"  // Expected title for Link 4
+    };
 
 
     private String[] link4XPaths = {
@@ -104,8 +111,15 @@ public class homepageObj {
             "What are the terms of use? – OLX PK",// Expected title for Link 3
             "Legal & Privacy information – OLX PK"  // Expected title for Link 4
     };
+    private String[] expectedURL4 = {
+            "https://help.olx.com.pk/hc/en-us",  // Expected title for Link 1
+            "https://www.olx.com.pk/sitemap/most-popular", // Expected title for Link 2
+            "https://help.olx.com.pk/hc/en-us/articles/4402989977487-What-are-the-terms-of-use-",// Expected title for Link 3
+            "https://help.olx.com.pk/hc/en-us/categories/4402989237007-Legal-Privacy-information"  // Expected title for Link 4
+    };
     private String prodURL = "https://www.olx.com.pk/";
 
+   @Step("Open URL")
     public void openURL(){
         driver.get(prodURL);
     }
@@ -139,6 +153,10 @@ public class homepageObj {
     public String[] getLink3XPaths() {
         return link3XPaths;
     }
+    public String[] getExpectedURL3() {
+        return expectedURL3;
+    }
+
 
     // Method to return expected titles
     public String[] getExpectedTitles3() {
@@ -150,7 +168,12 @@ public class homepageObj {
 
     // Method to return expected titles
     public String[] getExpectedTitles4() {
-        return expectedTitles4;
-    }
+        return expectedTitles4;}
+
+        public String[] getExpectedURL4() {
+            return expectedURL4;
+        }
+
+
 
 }

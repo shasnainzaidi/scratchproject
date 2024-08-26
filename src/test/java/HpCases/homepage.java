@@ -5,6 +5,7 @@ import HomeObj.homepageObj;
 import concepts.configReader;
 import concepts.retryAnalyzer;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +41,7 @@ public class homepage {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
 
-        this.driver = new ChromeDriver();
+        this.driver = new ChromeDriver(options);
         driver.manage().window().maximize();
 
         homepg = new homepageObj(driver);
@@ -196,6 +197,7 @@ public class homepage {
 
         }
     @Test (priority=4)
+    @Description("Verify the About us links from OLX Homepage footers")
     public void aboutUs(){
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
@@ -205,7 +207,9 @@ public class homepage {
         String[] linkXPaths = homepg.getLink3XPaths();
 
         // Expected titles after redirection for each link
-        String[] expectedTitles = homepg.getExpectedTitles3();
+       // String[] expectedTitles = homepg.getExpectedTitles3();
+        String[] expectedURL = homepg.getExpectedURL3(); // Add a method in homepg to get expected URLs
+
         for (int i = 0; i < linkXPaths.length; i++) {
             // Scroll down to the footer (optional based on your page structure)
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -218,11 +222,15 @@ public class homepage {
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            String actualTitle = driver.getTitle();
-            System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
+            //String actualTitle = driver.getTitle();
+            String actualURL = driver.getCurrentUrl();
+
+            //System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
+            System.out.println("Actual URL for Link " + (i + 1) + ": " + actualURL);
 
             // Assert redirection success based on the page title
-            Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
+            //Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
+            Assert.assertEquals(actualURL, expectedURL[i], "Redirection failed for Link " + (i + 1) + " - URL does not match");
 
             driver.navigate().back();
 
@@ -242,7 +250,9 @@ public class homepage {
         String[] linkXPaths = homepg.getLink4XPaths();
 
         // Expected titles after redirection for each link
-        String[] expectedTitles = homepg.getExpectedTitles4();
+       // String[] expectedTitles = homepg.getExpectedTitles4();
+        String[] expectedURL = homepg.getExpectedURL4(); // Add a method in homepg to get expected URLs
+
         for (int i = 0; i < linkXPaths.length; i++) {
             // Scroll down to the footer (optional based on your page structure)
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -256,11 +266,15 @@ public class homepage {
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            String actualTitle = driver.getTitle();
-            System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
+            //String actualTitle = driver.getTitle();
+            String actualURL = driver.getCurrentUrl();
+
+            //System.out.println("Actual Page Title for Link " + (i + 1) + ": " + actualTitle);
+            System.out.println("Actual URL for Link " + (i + 1) + ": " + actualURL);
 
             // Assert redirection success based on the page title
-            Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
+           // Assert.assertEquals(actualTitle, expectedTitles[i], "Redirection failed for Link " + (i + 1) + " - Page title does not match");
+            Assert.assertEquals(actualURL, expectedURL[i], "Redirection failed for Link " + (i + 1) + " - URL does not match");
 
             driver.navigate().back();
 
