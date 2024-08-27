@@ -17,6 +17,16 @@ public class homepageObj {
     public WebDriver driver;
     public Actions actions;
 
+    public void homeAd2(){
+         List<WebElement> elements =driver.findElements(By.cssSelector("._2b9b6003"));
+            if (elements.size()>0) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(elements.size());
+                Actions actions = new Actions(driver);
+                WebElement element = elements.get(randomIndex);
+            }
+
+    }
 
     public void clickRandomElement() {List<WebElement> elements =driver.findElements(By.cssSelector("._2b9b6003"));
         if (elements.size()>0){
@@ -31,7 +41,11 @@ public class homepageObj {
         else {
             System.out.println("No elements found with the specified class.");
 
-        }}
+        }
+
+    }
+
+
 
 
     @FindBy(css = "input[placeholder='Location or Compound']")
@@ -46,8 +60,8 @@ public class homepageObj {
     @FindBy(xpath = "//span[normalize-space()='Aabpara Coop Housing Society, Lahore']")
     public WebElement l4Location;
 
-    @FindBy(xpath = "(//div[@class='_9dfeb3c2'])[63]")
-    public WebElement firstAd;
+   //@FindBy(xpath = "(//div[@class='_9dfeb3c2'])[63]")
+    //public WebElement firstAd;
 
     @FindBy(css = "._1ee53078")
     public WebElement adLocation;

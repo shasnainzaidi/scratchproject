@@ -95,12 +95,16 @@ public class homepage {
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
     js.executeScript("window.scrollBy(0, 1500);");
-
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(homepg.firstAd));
+        try {
+            Thread.sleep(2000);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    //WebElement element = wait.until(ExpectedConditions.elementToBeClickable(homepg.firstAd));
 
     Reporter.log("Click on 1st Ad", true);
-    homepg.firstAd.click();
+    homepg.clickRandomElement();
         try {
             Thread.sleep(2000);
         } catch(InterruptedException ex) {
