@@ -1,14 +1,39 @@
 package objects;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
+import java.util.Random;
 
 public class homepageObj {
 
     public WebDriver driver;
+    public Actions actions;
+
+
+    public void clickRandomElement() {List<WebElement> elements =driver.findElements(By.cssSelector("._2b9b6003"));
+        if (elements.size()>0){
+            Random random = new Random();
+            int randomIndex = random.nextInt(elements.size());
+            Actions actions = new Actions(driver);
+            WebElement element = elements.get(randomIndex);
+            actions.moveToElement(element).click().perform();
+            System.out.println("Clicked element at index: " + randomIndex);
+
+        }
+        else {
+            System.out.println("No elements found with the specified class.");
+
+        }}
+
+
     @FindBy(css = "input[placeholder='Location or Compound']")
     public WebElement l1Location;
 
@@ -26,6 +51,9 @@ public class homepageObj {
 
     @FindBy(css = "._1ee53078")
     public WebElement adLocation;
+
+    @FindBy(css = ".ce4a27bf")
+    public WebElement homeAd;
 
 
     @FindBy(css ="div[aria-label='Location input'] div div[class='_1db27fa0']")
