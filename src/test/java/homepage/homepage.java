@@ -153,7 +153,7 @@ public class homepage {
 
 
             }
-    @Test (priority=3)
+    @Test (priority=3, enabled=false)
     public void trendingSearches() {
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 

@@ -21,6 +21,8 @@ target/
 /apache-maven-3.3.1-bin.tar.gz/
 /README.md/
 /allure-report/
+/apache-maven-3.3.1/
+settings.xml
 
 ### Eclipse ###
 .apt_generated

@@ -1,4 +1,4 @@
-package mobilewebhighpriority;
+package mwHighPriority;
 
 import objects.Objects;
 import concepts.configReader;

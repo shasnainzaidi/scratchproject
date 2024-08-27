@@ -52,6 +52,13 @@ public class homepageObj {
     @FindBy(css = "._7c57f8f7")
     public WebElement searchTitle;
 
+    @FindBy(css = "img[alt='Dropdown arrow']")
+    public WebElement allCatDrop;
+
+    @FindBy(xpath = "//a[contains(text(),'Mobiles')]")
+    public WebElement catDrop;
+
+    private String expectedTitleDrop= "Mobiles in Pakistan";
 
 
     private String[] linkXPaths = {
@@ -147,7 +154,7 @@ public class homepageObj {
     }
 
 
-
+    public String getExpectedTitleDrop (){return expectedTitleDrop;}
 
 
 
