@@ -17,8 +17,10 @@ import java.util.Random;
 public class headerCategories extends baseTest {
 
     private homepageObj homepg;
+
     @BeforeMethod
     public void setupPage(){
+
         homepg = new homepageObj(driver);
     }
 @Test

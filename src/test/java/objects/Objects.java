@@ -36,6 +36,19 @@ public class Objects {
     @FindBy(xpath = "//span[@aria-label='Input error message'])[1]")
     public WebElement emailErrorMessage;
 
+    @FindBy(xpath = "//span[normalize-space()='Sell']")
+    public WebElement sellBtn;
+
+    @FindBy(xpath = "//span[normalize-space()='Mobiles']")
+    public WebElement selectCategory;
+
+    @FindBy(xpath = "//div[contains(text(),'Mobile Phones')]")
+    public WebElement selectSubCategory;
+
+    @FindBy(css = "._06fac551")
+    public WebElement imageAddBtn;
+
+
     @FindBy(xpath = "//input[@id='password']")
     public WebElement password;
 

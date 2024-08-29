@@ -3,6 +3,7 @@ package hpcases;
 import concepts.configReader;
 import io.qameta.allure.Description;
 import io.qameta.allure.testng.AllureTestNg;
+import mwHighPriority.baseTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,20 +16,17 @@ import objects.Objects;
 import java.util.concurrent.TimeUnit;
 //@Listeners(testNGListeners.class)
 @Listeners({AllureTestNg.class})
-public class Logins{
-    private WebDriver driver;
+public class Logins extends baseTest {
+
     private Objects loginobj;
     private concepts.configReader configReader;
 
 
     @BeforeMethod
     public void Initialization() {
+        loginobj = new Objects(driver);
         configReader = new configReader();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
-        driver = new ChromeDriver();
+
 
     }
 
@@ -37,7 +35,7 @@ public class Logins{
 @Test (groups ="Sanity", priority = 1)
   @Description("Verify login with Email")
     public void loginEmail(){
-    loginobj = new Objects(driver);
+
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
 

@@ -100,6 +100,15 @@ public class homepageObj {
     @FindBy(xpath = "//a[contains(text(),'Mobiles')]")
     public WebElement catDrop;
 
+    @FindBy(xpath = "//button[normalize-space()='Not now, continue in browser']")
+    public WebElement mobileConfirm;
+
+    @FindBy(xpath = "//button[normalize-space()='Other address']")
+    public WebElement otherLocation;
+
+    @FindBy(xpath = "//span[normalize-space()='See ads in all Pakistan']")
+    public WebElement seePak;
+
     private String expectedTitleDrop= "Mobiles in Pakistan";
 
 
