@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class baseTest {
+public class baseMultiBrowser {
     private WebDriver driver;
     private configReader configReader;
 
