@@ -52,7 +52,7 @@ public class homepage {
     }
 
 
-    @Test (priority=1)//(retryAnalyzer = retryAnalyzer.class)
+    @Test (groups = "Sanity", priority=1)//(retryAnalyzer = retryAnalyzer.class)
     public void homepageAdLocation(){
 
     int timeout = Integer.parseInt(configReader.getProperty("timeout"));
@@ -263,7 +263,7 @@ public class homepage {
         }
 
     }
-    @Test
+    @Test (groups = "Sanity")
     public void back2Top(){
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 

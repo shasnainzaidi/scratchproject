@@ -29,7 +29,7 @@ private concepts.configReader configReader;
     configReader = new configReader();
 
 }
-@Test
+@Test (groups ="Sanity")
     public void freeAdPost(){
     loginEmail();
     System.out.println("Login done");

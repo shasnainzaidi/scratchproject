@@ -26,7 +26,7 @@ public class searchPage {
 
     }
 
-    @Test
+    @Test (groups = "Sanity")
     public void navigate2Search(){
         int timeout = Integer.parseInt(configReader.getProperty("timeout"));
         String url = configReader.getURL();
