@@ -10,5 +10,11 @@
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
     <test verbose="2" preserve-order="true" name="adPost.java">
+        <classes>
+            <class name="hpcases.adPost"/>
+            <class name="hpcases.Logins"/>
+            <class name="homepage.homepage"/>
+            <!-- Add other classes where you want to include sanity tests -->
+        </classes>
     </test>
 </suite>
