@@ -52,12 +52,49 @@ public class Objects {
     @FindBy(xpath = "//input[@id='password']")
     public WebElement password;
 
+    @FindBy(xpath = "//input[@id='make']")
+    public WebElement makeOption;
+
+    @FindBy(xpath = "//div[normalize-space()='Acer']")
+    public WebElement makeSelection;
+
+    @FindBy(xpath = "//input[@id='new_used']")
+    public WebElement conditionOption;
+
+    @FindBy(xpath = "//div[normalize-space()='Open Box']")
+    public WebElement conditionSelection;
+
+    @FindBy(xpath = "//input[@id='title']")
+    public WebElement adTitle;
+
+    @FindBy(xpath = "//textarea[@id='description']")
+    public WebElement adDescription;
+
+    @FindBy(xpath = "//input[@id='Location']")
+    public WebElement adLocation;
+
+    @FindBy(xpath = "//span[normalize-space()='Use current location']")
+    public WebElement locationSelection;
+
+    @FindBy(xpath = "//input[@id='price']")
+    public WebElement adPrice;
+
+    @FindBy(xpath = "//img[@alt='Remove']")
+    public WebElement imageRemoveBtn;
+
+
+
+
     private String baseURL = "https://www.olx.com.pk/";
     private String invlaidEmail = "hasnin.xaidi1@gmail.com";
     private String number = "03434001699";
     private String pswrd = "qwerty10@";
     private String email = "hasnain.xaidi1@gmail.com";
     private String expectedUserName = "Everything for “U”";
+    private String adTitle1 = "Mobile for sale in Lahore";
+    private String adDescription1 = "Mobile for sale in LahoreMobile for sale in LahoreMobile for sale in Lahore";
+    private String adPrice1 = "5000";
+
 
     @Step("Opening the Website")
     public void openURL() {
@@ -79,6 +116,20 @@ public class Objects {
         emailId.sendKeys(email);
     }
 
+    @Step("Added Title for the Ad")
+    public void addTitle() {
+        adTitle.sendKeys(adTitle1);
+    }
+
+    @Step("Added desciprtion for the Ad")
+    public void adddescription() {
+        adDescription.sendKeys(adDescription1);
+    }
+
+    @Step("Added ad price")
+    public void addprice() {
+        adPrice.sendKeys(adPrice1);
+    }
     @Step("Entering the password and click next")
     public void enterPassword(){
         password.sendKeys(pswrd);

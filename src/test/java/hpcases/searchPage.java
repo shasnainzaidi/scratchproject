@@ -45,7 +45,7 @@ public class searchPage {
         String searchTitleText = searchTitle.getText();
         System.out.println(searchTitleText);
 
-        String expectedText = "Pakistan Free classifieds";
+        String expectedText = homepage.getExpectedSearchTitle();
         Assert.assertEquals(searchTitleText, expectedText);
         driver.quit();
 

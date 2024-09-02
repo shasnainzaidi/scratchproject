@@ -111,6 +111,7 @@ public class homepageObj {
 
     private String expectedTitleDrop= "Mobiles in Pakistan";
 
+    private String expectedSearchTitle ="Pakistan Free classifieds";
 
     private String[] linkXPaths = {
             "//span[@class='_1fcb6673'][normalize-space()='Cars']",  // Link 1
@@ -206,6 +207,7 @@ public class homepageObj {
 
 
     public String getExpectedTitleDrop (){return expectedTitleDrop;}
+    public String getExpectedSearchTitle (){return expectedSearchTitle;}
 
 
 

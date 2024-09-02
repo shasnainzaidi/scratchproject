@@ -113,7 +113,7 @@
                 <version>3.3.1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${basedir}/login.xml</suiteXmlFile>
+                        <suiteXmlFile>${basedir}/adpost.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
