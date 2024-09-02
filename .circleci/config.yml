@@ -53,7 +53,7 @@ workflows:
   scheduled_workflow:
     triggers:
       - schedule:
-          cron: "05 10 * * *"  # Runs daily at 10 05 UTC
+          cron: "55 10 * * *"  # Runs daily at 10 05 UTC
           filters:
             branches:
               only:
