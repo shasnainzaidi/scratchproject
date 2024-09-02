@@ -22,10 +22,10 @@ public class Logins extends baseTest {
     private concepts.configReader configReader;
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void Initialization() {
         loginobj = new Objects(driver);
-        configReader = new configReader();
+        configReader = new concepts.configReader();
 
 
     }

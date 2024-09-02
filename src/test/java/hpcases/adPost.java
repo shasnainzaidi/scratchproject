@@ -23,15 +23,21 @@ public class adPost extends Logins{
     private Objects loginObj;
 private concepts.configReader configReader;
 
-@BeforeMethod
+@BeforeMethod(alwaysRun = true)
     public void setupPage(){
     loginObj = new Objects(driver);
     configReader = new configReader();
-
 }
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 @Test (groups ="Sanity")
     public void freeAdPost(){
     loginEmail();
+    int timeout = Integer.parseInt(configReader.getProperty("timeout"));
+
     System.out.println("Login done");
 
     loginObj.sellBtn.click();

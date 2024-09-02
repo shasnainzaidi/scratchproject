@@ -11,7 +11,7 @@ public class baseTest {
     protected WebDriver driver;
     protected concepts.configReader configReader;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         configReader = new concepts.configReader();

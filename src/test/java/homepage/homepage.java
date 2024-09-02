@@ -1,5 +1,6 @@
 package homepage;
 
+import mwHighPriority.baseTest;
 import objects.homepageObj;
 import concepts.configReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -21,27 +22,16 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 //@Listeners(testNGListeners.class)
 @Listeners({AllureTestNg.class})
-public class homepage {
+public class homepage extends baseTest {
 
-    private WebDriver driver;
     private homepageObj homepg;
     private concepts.configReader configReader;
 
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void initialization(){
-        WebDriverManager.chromedriver().setup();
         configReader = new configReader();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-
-        this.driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-
         homepg = new homepageObj(driver);
     }
     @AfterMethod
@@ -50,7 +40,6 @@ public class homepage {
             driver.quit();
         }
     }
-
 
     @Test (groups = "Sanity", priority=1)//(retryAnalyzer = retryAnalyzer.class)
     public void homepageAdLocation(){
