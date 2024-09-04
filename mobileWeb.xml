@@ -4,7 +4,7 @@
     <test verbose="2" preserve-order="true" name="mobileHome.java">
         <parameter name="deviceName" value="mobile"/>
         <classes>
-            <class name="homepage.mobileHome">
+            <class name="mobileWeb.mobileHome">
                 <methods>
                     <include name="homepageMobile"/>
                 </methods>

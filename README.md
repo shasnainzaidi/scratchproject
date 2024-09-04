@@ -60,7 +60,7 @@ Follow these steps to set up the project on your local machine:
   - `hpcases`: Contains High Priority Test Cases like `Logins`, `adPosting`, etc.
   - `concepts`: Includes core automation concept usage like utility classes like `configReader`, multi browser testing & Retry Analyzer
   - `objects`: Contains Page Object Model classes.
-  - `mwHighPriority`: Contains high priority mobile web tests
+  - `mobileWeb`: Contains high priority mobile web tests
   - `homepage`: Contain e2e testcases from homepage
   - `visuals`: Contains visual tests from 
 

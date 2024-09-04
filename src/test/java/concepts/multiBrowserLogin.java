@@ -1,7 +1,6 @@
-package mwHighPriority;
+package concepts;
 
 import objects.Objects;
-import concepts.configReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +16,7 @@ import org.testng.annotations.Test;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class mobileweb {
+public class multiBrowserLogin {
     private WebDriver driver;
     private Objects loginobj;
     private Properties properties;
