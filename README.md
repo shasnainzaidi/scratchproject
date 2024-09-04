@@ -57,7 +57,7 @@ Follow these steps to set up the project on your local machine:
   ```
 ## Project Structure
  - `src/test/java`: Contains test classes for execution.
-  - `hpcases`: Contains High Priority Test Cases like `Logins`, `adPosting`, etc.
+  - `hpcases`: Contains High Priority Test Cases like `Logins`, `adPost`, `chat` etc.
   - `concepts`: Includes core automation concept usage like utility classes like `configReader`, multi browser testing & Retry Analyzer
   - `objects`: Contains Page Object Model classes.
   - `mobileWeb`: Contains high priority mobile web tests
@@ -114,7 +114,7 @@ Follow these steps to set up the project on your local machine:
 
 ## Known Issues
 - The `loginEmail` test occasionally fails due to a race condition in page loading.
-- The 'olxFooter' Test occasionally fails due to a race condition in page loading.
+- The `olxFooter` Test occasionally fails due to a race condition in page loading.
 
 ## Future Improvements
 - Implement parallel test execution for faster results.
