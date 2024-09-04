@@ -1,6 +1,7 @@
 package hpcases;
 
 import concepts.configReader;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.testng.AllureTestNg;
 import mwHighPriority.baseTest;
@@ -71,8 +72,10 @@ WebElement userNameElement = loginobj.userNameElement;
     public void loginPhone(){
 
     loginobj = new Objects(driver);
-
-    loginobj.openURL();
+    Allure.step("Opening the Website", () -> {
+        // Step logic
+        loginobj.openURL();
+    });
 
 
     loginobj.LoginBtn.click();
