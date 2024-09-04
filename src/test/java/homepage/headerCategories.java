@@ -1,18 +1,11 @@
-package mwHighPriority;
+package homepage;
 
+import hpcases.baseTest;
 import objects.homepageObj;
-import org.openqa.selenium.AcceptedW3CCapabilityKeys;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.util.List;
-import java.util.Random;
 
 public class headerCategories extends baseTest {
 

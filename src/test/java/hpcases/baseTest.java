@@ -1,4 +1,4 @@
-package mwHighPriority;
+package hpcases;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.testng.AllureTestNg;
@@ -24,7 +24,7 @@ public class baseTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
 
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 

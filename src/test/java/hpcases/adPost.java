@@ -53,7 +53,7 @@ private concepts.configReader configReader;
     try {
         Runtime.getRuntime().exec("D:/AutoITimage.exe");
     } catch (IOException e) {
-        e.printStackTrace(); // Print the stack trace to understand the issue
+        e.printStackTrace();
     }
 
     loginObj.makeOption.click();

@@ -1,14 +1,9 @@
 package hpcases;
 
-import concepts.configReader;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.testng.AllureTestNg;
-import mwHighPriority.baseTest;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import objects.Objects;
@@ -17,7 +12,7 @@ import objects.Objects;
 import java.util.concurrent.TimeUnit;
 //@Listeners(testNGListeners.class)
 @Listeners({AllureTestNg.class})
-public class Logins extends baseTest {
+public class Logins extends baseTest{
 
     private Objects loginobj;
     private concepts.configReader configReader;
@@ -73,7 +68,6 @@ WebElement userNameElement = loginobj.userNameElement;
 
     loginobj = new Objects(driver);
     Allure.step("Opening the Website", () -> {
-        // Step logic
         loginobj.openURL();
     });
 
@@ -84,7 +78,10 @@ WebElement userNameElement = loginobj.userNameElement;
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS );
 
     loginobj.LoginPhone.click();
+    Allure.step("Enter Password", () -> {
         loginobj.enterPhone();
+    });
+
         loginobj.enterPassword();
         loginobj.Login.click();
 
