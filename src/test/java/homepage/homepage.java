@@ -1,5 +1,6 @@
 package homepage;
 
+import config.jsUtils;
 import hpcases.baseTest;
 import objects.homepageObj;
 import concepts.configReader;
@@ -22,12 +23,15 @@ public class homepage extends baseTest {
     private homepageObj homepg;
     private concepts.configReader configReader;
 
+    config.jsUtils jsUtils;
 
 
     @BeforeMethod(alwaysRun = true)
     public void initialization(){
         configReader = new configReader();
         homepg = new homepageObj(driver);
+        this.jsUtils = new jsUtils(driver);
+
     }
     @AfterMethod
     public void tearDown() {
@@ -77,15 +81,14 @@ public class homepage extends baseTest {
 
     Reporter.log("Scroll the page", true);
 
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("window.scrollBy(0, 1500);");
+        jsUtils.scrollVertically(1500);
+
+
         try {
             Thread.sleep(2000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-    //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    //WebElement element = wait.until(ExpectedConditions.elementToBeClickable(homepg.firstAd));
 
     Reporter.log("Click on 1st Ad", true);
     homepg.clickRandomElement();
@@ -118,8 +121,8 @@ public class homepage extends baseTest {
             String[] expectedTitles = homepg.getExpectedTitles();
             for (int i = 0; i < linkXPaths.length; i++) {
                 Reporter.log("Scroll down to the footer", true);
-                JavascriptExecutor js = (JavascriptExecutor) driver;
-                js.executeScript("window.scrollBy(0, 5000);");
+                jsUtils.scrollVertically(5000);
+
 
                 Reporter.log("// Click on the link", true);
                 driver.findElement(By.xpath(linkXPaths[i])).click();
@@ -153,8 +156,7 @@ public class homepage extends baseTest {
 
         String[] expectedTitles = homepg.getExpectedTitles2();
         for (int i = 0; i < linkXPaths.length; i++) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0, 5000);");
+            jsUtils.scrollVertically(5000);
 
             driver.findElement(By.xpath(linkXPaths[i])).click();
             try {
@@ -188,8 +190,7 @@ public class homepage extends baseTest {
         String[] expectedURL = homepg.getExpectedURL3();
 
         for (int i = 0; i < linkXPaths.length; i++) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0, 5000);");
+            jsUtils.scrollVertically(5000);
 
             driver.findElement(By.xpath(linkXPaths[i])).click();
             try {
@@ -224,8 +225,7 @@ public class homepage extends baseTest {
 
         for (int i = 0; i < linkXPaths.length; i++) {
 
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0, 5000);");
+            jsUtils.scrollVertically(5000);
 
             driver.findElement(By.xpath(linkXPaths[i])).click();
 
@@ -253,8 +253,7 @@ public class homepage extends baseTest {
 
         homepg.openURL();
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, 5000);");
+        jsUtils.scrollVertically(5000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.visibilityOf(homepg.back2Top));
         homepg.back2Top.click();

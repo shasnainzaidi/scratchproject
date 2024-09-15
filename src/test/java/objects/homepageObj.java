@@ -153,7 +153,7 @@ public class homepageObj {
     private String[] expectedURL3 = {
             "https://www.dubizzlegroup.com/",  // Expected URL for Link 1
             "https://blog.olx.com.pk/", // Expected URL for Link 2
-            "https://help.olx.com.pk/hc/en-us/articles/4403042207631-How-can-you-contact-Us-",// Expected title for Link 3
+            "https://help.olx.com.pk/hc/en-us/articles/4403042207631-How-can-you-contact-Us",// Expected title for Link 3
             "https://www.surveygizmo.com/s3/4910980/WP-Business-Form?source=Website"  // Expected title for Link 4
     };
 

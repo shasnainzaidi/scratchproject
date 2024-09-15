@@ -1,5 +1,6 @@
 package homepage;
 
+import config.jsUtils;
 import hpcases.baseTest;
 import objects.homepageObj;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,9 +11,11 @@ import org.testng.annotations.Test;
 public class headerCategories extends baseTest {
 
     private homepageObj homepg;
+    jsUtils jsUtils;
 
     @BeforeMethod
     public void setupPage(){
+        this.jsUtils = new jsUtils(driver);
 
         homepg = new homepageObj(driver);
     }
@@ -39,8 +42,7 @@ public class headerCategories extends baseTest {
 @Test
     public void multipleX(){
         homepg.openURL();
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("window.scrollBy(0, 1500);");
+    jsUtils.scrollVertically(1500);
         homepg.clickRandomElement();
 
 
