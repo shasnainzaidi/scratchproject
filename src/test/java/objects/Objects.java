@@ -13,10 +13,10 @@ public class Objects {
     @FindBy(xpath = "//span[@class='a1c1940e b7af14b4']")
     public WebElement LoginBtn;
 
-    @FindBy(xpath = "(//span[@class='_30de236c b7af14b4'])[3]")
+    @FindBy(xpath = "//span[normalize-space()='Login with Email']")
     public WebElement LoginEmail;
 
-    @FindBy(xpath = "(//span[@class='_30de236c b7af14b4'])[4]")
+    @FindBy(xpath = "//span[normalize-space()='Login with Phone']")
     public WebElement LoginPhone;
 
     @FindBy(xpath = "//button[@class='_91e21052 e07f63ca']")
