@@ -1,4 +1,4 @@
-package log4jDemo;
+package concepts;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
