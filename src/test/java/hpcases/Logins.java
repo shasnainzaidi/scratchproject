@@ -4,11 +4,14 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import objects.Objects;
 
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 //@Listeners(testNGListeners.class)
 @Listeners({AllureTestNg.class})
@@ -43,13 +46,11 @@ loginobj.LoginEmail.click();
 loginobj.enteremail();
 loginobj.enterPassword();
 loginobj.Login.click();
-    try {
-        Thread.sleep(1000);
-    } catch(InterruptedException ex) {
-        Thread.currentThread().interrupt();
-    }
-loginobj.userDropdown.click();
-WebElement userNameElement = loginobj.userNameElement;
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+
+    WebElement linkElement = wait.until(ExpectedConditions.elementToBeClickable(loginobj.userDropdown));
+    linkElement.click();
+    WebElement userNameElement = loginobj.userNameElement;
     String userName = userNameElement.getText();
             System.out.println(userName);
              String expected= "Everything for “U”";
@@ -65,6 +66,7 @@ WebElement userNameElement = loginobj.userNameElement;
 @Test (groups ="Sanity", priority = 2)
 @Description("Verify login with Phone Number")
     public void loginPhone(){
+    int timeout = Integer.parseInt(configReader.getProperty("timeout"));
 
     loginobj = new Objects(driver);
     Allure.step("Opening the Website", () -> {
@@ -75,7 +77,7 @@ WebElement userNameElement = loginobj.userNameElement;
     loginobj.LoginBtn.click();
 
 
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS );
+    driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS );
 
     loginobj.LoginPhone.click();
     Allure.step("Enter Password", () -> {
@@ -84,7 +86,10 @@ WebElement userNameElement = loginobj.userNameElement;
 
         loginobj.enterPassword();
         loginobj.Login.click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 
+    WebElement linkElement = wait.until(ExpectedConditions.elementToBeClickable(loginobj.userDropdown));
+    linkElement.click();
         loginobj.userDropdown.click();
         String expect = "Everything for “U”";
         WebElement userNameElement = loginobj.userNameElement;

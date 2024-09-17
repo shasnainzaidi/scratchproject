@@ -1,6 +1,7 @@
 package homepage;
 
 import concepts.configReader;
+import config.jsUtils;
 import hpcases.baseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
@@ -24,9 +25,11 @@ import java.util.concurrent.TimeUnit;
 public class allcategories extends baseTest {
     private homepageObj homepg;
     private concepts.configReader configReader;
+    config.jsUtils jsUtils;
 
     @BeforeMethod
     public void initialization(){
+        this.jsUtils = new jsUtils(driver);
 
         configReader = new configReader();
         homepg = new homepageObj(driver);
@@ -46,8 +49,7 @@ public class allcategories extends baseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 
         for (int i = 0; i < linkXPaths.length; i++) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0, 5000);");
+            jsUtils.scrollVertically(5000);
 
             WebElement linkElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(linkXPaths[i])));
             linkElement.click();

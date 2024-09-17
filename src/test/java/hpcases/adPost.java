@@ -5,7 +5,9 @@ import io.qameta.allure.testng.AllureTestNg;
 import objects.Objects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +17,7 @@ import org.testng.annotations.Test;
 import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.sql.Driver;
+import java.time.Duration;
 
 @Listeners({AllureTestNg.class})
 public class adPost extends Logins{
@@ -41,13 +44,10 @@ private concepts.configReader configReader;
     System.out.println("Login done");
 
     loginObj.sellBtn.click();
-    try {
-        Thread.sleep(2000);
-    } catch(InterruptedException ex) {
-        Thread.currentThread().interrupt();
-    }
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 
-    loginObj.selectCategory.click();
+    WebElement linkElement = wait.until(ExpectedConditions.elementToBeClickable(loginObj.selectCategory));
+    linkElement.click();
     loginObj.selectSubCategory.click();
     loginObj.imageAddBtn.click();
     try {

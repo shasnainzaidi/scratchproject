@@ -36,7 +36,6 @@ public class chat extends Logins{
         loginEmail();
        System.out.println("Login done");
 
-       int timeout = Integer.parseInt(configReader.getProperty("timeout"));
           home.chatButton.click();
         home.firstChat.click();
         home.clickAttachment.click();
