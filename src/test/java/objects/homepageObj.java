@@ -113,96 +113,100 @@ public class homepageObj {
 
     private String expectedSearchTitle ="Pakistan Free classifieds";
 
-    private String[] linkXPaths = {
+    private String[] popularCatlinkXPaths = {
             "//span[@class='_1fcb6673'][normalize-space()='Cars']",  // Link 1
             "//span[normalize-space()='Flats for rent']",  // Link 2
             "//span[@class='_1fcb6673'][normalize-space()='Mobile Phones']",  // Link 3
             "//span[@class='_1fcb6673'][normalize-space()='Jobs']"   // Link 4
     };
-    private String[] expectedTitles = {
+    private String[] popularCatexpectedTitles = {
             "Cars for Sale in Pakistan",  // Expected title for Link 1
             "Apartments for Rent in Pakistan | Flats for Rent in Pakistan", // Expected title for Link 2
             "Mobile Phones for Sale in Pakistan | Mobile Phone Prices in Pakistan",// Expected title for Link 3
             "Jobs in Pakistan"  // Expected title for Link 4
     };
-    private String[] link2XPaths = {
+    private String[] trendSearchLinkXPaths = {
             "//span[@class='_1fcb6673'][normalize-space()='Bikes']",  // Link 1
             "//span[normalize-space()='Watches']",  // Link 2
             "//span[normalize-space()='Books']",  // Link 3
             "//span[normalize-space()='Dogs']"   // Link 4
     };
-    private String[] expectedTitles2 = {
+    private String[] trendSearchExpectedTitles = {
             "Motorcycles for Sale in Pakistan | Motorcycle Prices in Pakistan",  // Expected title for Link 1
             "Watches for Sale in Pakistan | Watches Prices in Pakistan", // Expected title for Link 2
             "Books Price in Pakistan | Books for Sale in Pakistan",// Expected title for Link 3
             "Dogs for Sale in Pakistan | Dog Prices in Pakistan"  // Expected title for Link 4
     };
 
-    private String[] link3XPaths = {
+    private String[] aboutUslinkXPaths = {
             "//span[normalize-space()='About Dubizzle Group']",  // Link 1
             "//span[normalize-space()='OLX Blog']",  // Link 2
             "//span[normalize-space()='Contact Us']",  // Link 3
             "//span[normalize-space()='OLX for Businesses']"   // Link 4
     };
-    private String[] expectedTitles3 = {
+    private String[] aboutUsexpectedTitles = {
             "Dubizzle Group – Formerly EMPG",  // Expected title for Link 1
             "Homepage | OLX Blog", // Expected title for Link 2
             "How can you contact Us? – OLX PK",// Expected title for Link 3
             "OLX For Business"  // Expected title for Link 4
     };
-    private String[] expectedURL3 = {
+    private String[] aboutUsexpectedURLs = {
             "https://www.dubizzlegroup.com/",  // Expected URL for Link 1
             "https://blog.olx.com.pk/", // Expected URL for Link 2
-            "https://help.olx.com.pk/hc/en-us/articles/4403042207631-How-can-you-contact-Us",// Expected title for Link 3
+            "https://help.olx.com.pk/hc/en-us/articles/4403042207631-How-can-you-contact-Us-",// Expected title for Link 3
             "https://www.surveygizmo.com/s3/4910980/WP-Business-Form?source=Website"  // Expected title for Link 4
     };
 
 
-    private String[] link4XPaths = {
+    private String[] FooterlinkXPaths = {
             "//span[normalize-space()='Help']",  // Link 1
             "//span[normalize-space()='Sitemap']",  // Link 2
             "//span[normalize-space()='Terms of use']",  // Link 3
             "//span[normalize-space()='Privacy Policy']"   // Link 4
     };
-    private String[] expectedTitles4 = {
+    private String[] FooterexpectedTitles = {
             "OLX PK",  // Expected title for Link 1
             "Sitemap Most Popular", // Expected title for Link 2
             "What are the terms of use? – OLX PK",// Expected title for Link 3
             "Legal & Privacy information – OLX PK"  // Expected title for Link 4
     };
-    private String[] expectedURL4 = {
+    private String[] FooterexpectedURLs = {
             "https://help.olx.com.pk/hc/en-us",  // Expected title for Link 1
             "https://www.olx.com.pk/sitemap/most-popular", // Expected title for Link 2
             "https://help.olx.com.pk/hc/en-us/articles/4402989977487-What-are-the-terms-of-use-",// Expected title for Link 3
             "https://help.olx.com.pk/hc/en-us/categories/4402989237007-Legal-Privacy-information"  // Expected title for Link 4
     };
 
-    private String[] link5XPaths = {
+    private String[] allCatlinkXPaths = {
             "//span[normalize-space()='Mobiles']",  // Link 1
             "//span[normalize-space()='Vehicles']",  // Link 2
             "//span[normalize-space()='Property for Sale']",  // Link 3
             "//span[normalize-space()='Property for Rent']"   // Link 4
     };
-    private String[] expectedTitles5 = {
+    private String[] allCatTitles = {
             "Mobiles in Pakistan",  // Expected title for Link 1
             "Vehicles in Pakistan", // Expected title for Link 2
             "Property for Sale in Pakistan",// Expected title for Link 3
             "Property for Sale in Pakistan"  // Expected title for Link 4
     };
-    private String[] expectedURL5 = {
+    private String[] allCatexpectedURLs = {
             "https://www.olx.com.pk/mobiles_c1411",  // Expected URL for Link 1
             "https://www.olx.com.pk/vehicles_c5", // Expected URL for Link 2
             "https://www.olx.com.pk/property-for-sale_c2",// Expected title for Link 3
             "https://www.olx.com.pk/property-for-rent_c3"  // Expected title for Link 4
     };
 
+    @Step("Entering text into the input field")
+    public void enterText(WebElement element, String text) {
+        element.clear();
+        element.sendKeys(text);
+    }
 
-
-    private String prodURL = "https://www.olx.com.pk/";
 
    @Step("Open URL")
     public void openURL(){
-        driver.get(prodURL);
+
+       driver.get("https://www.olx.com.pk/");
     }
 
 
@@ -216,56 +220,57 @@ public class homepageObj {
         PageFactory.initElements(driver, this);
     }
     // Method to return link XPaths
-    public String[] getLinkXPaths() {
-        return linkXPaths;
+    public String[] popularCatgetLinkXPaths() {
+        return popularCatlinkXPaths;
     }
 
     // Method to return expected titles
-    public String[] getExpectedTitles() {
-        return expectedTitles;
+    public String[] popularCatgetExpectedTitles() {
+        return popularCatexpectedTitles;
     }
-    public String[] getLink2XPaths() {
-        return link2XPaths;
-    }
-
-    // Method to return expected titles
-    public String[] getExpectedTitles2() {
-        return expectedTitles2;
-    }
-    public String[] getLink3XPaths() {
-        return link3XPaths;
-    }
-    public String[] getExpectedURL3() {
-        return expectedURL3;
-    }
-
-
-    // Method to return expected titles
-    public String[] getExpectedTitles3() {
-        return expectedTitles3;
-    }
-    public String[] getLink4XPaths() {
-        return link4XPaths;
+    public String[] trendSearchLinkXPaths() {
+        return trendSearchLinkXPaths;
     }
 
     // Method to return expected titles
-    public String[] getExpectedTitles4() {
-        return expectedTitles4;}
+    public String[] trendSearchTitle() {
+        return trendSearchExpectedTitles;
+    }
+    public String[] aboutUslinkXPath() {
+        return aboutUslinkXPaths;
+    }
+    public String[] aboutUsexpectedURL() {
+        return aboutUsexpectedURLs;
+    }
 
-        public String[] getExpectedURL4() {
-            return expectedURL4;
+
+    // Method to return expected titles
+    public String[] aboutUsexpectedTitles() {
+        return aboutUsexpectedTitles;
+    }
+    public String[] FooterlinkXPath() {
+        return FooterlinkXPaths;
+    }
+
+    // Method to return expected titles
+    public String[] FooterexpectedTitle() {
+        return FooterexpectedTitles;}
+
+        public String[] FooterexpectedURL() {
+        return FooterexpectedURLs;
         }
 
-    public String[] getLink5XPaths() {
-        return link4XPaths;
+    public String[] allCatlinkXPath() {
+                return allCatlinkXPaths;
     }
 
     // Method to return expected titles
-    public String[] getExpectedTitles5() {
-        return expectedTitles4;}
+    public String[] allCatTitle() {
+        return allCatTitles;
+    }
 
-    public String[] getExpectedURL5() {
-        return expectedURL4;
+    public String[] allCatexpectedURL() {
+        return allCatexpectedURLs;
     }
 
 

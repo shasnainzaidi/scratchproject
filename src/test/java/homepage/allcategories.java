@@ -43,13 +43,12 @@ public class allcategories extends baseTest {
         homepg.openURL();
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
-        String[] linkXPaths = homepg.getLink5XPaths();
+        String[] linkXPaths = homepg.allCatlinkXPath();
 
-        String[] expectedURL = homepg.getExpectedURL5();
+        String[] expectedURL = homepg.allCatexpectedURL();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 
         for (int i = 0; i < linkXPaths.length; i++) {
-            jsUtils.scrollVertically(5000);
 
             WebElement linkElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(linkXPaths[i])));
             linkElement.click();

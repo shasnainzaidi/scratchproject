@@ -115,10 +115,11 @@ public class homepage extends baseTest {
             driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
 
-            String[] linkXPaths = homepg.getLinkXPaths();
+            String[] linkXPaths = homepg.popularCatgetLinkXPaths();
 
             Reporter.log("Expected titles after redirection for each link", true);
-            String[] expectedTitles = homepg.getExpectedTitles();
+            String[] expectedTitles = homepg.popularCatgetExpectedTitles();
+
             for (int i = 0; i < linkXPaths.length; i++) {
                 Reporter.log("Scroll down to the footer", true);
                 jsUtils.scrollVertically(5000);
@@ -152,9 +153,9 @@ public class homepage extends baseTest {
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
 
-        String[] linkXPaths = homepg.getLink2XPaths();
+        String[] linkXPaths = homepg.trendSearchLinkXPaths();
 
-        String[] expectedTitles = homepg.getExpectedTitles2();
+        String[] expectedTitles = homepg.trendSearchTitle();
         for (int i = 0; i < linkXPaths.length; i++) {
             jsUtils.scrollVertically(5000);
 
@@ -185,9 +186,9 @@ public class homepage extends baseTest {
         homepg.openURL();
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
-        String[] linkXPaths = homepg.getLink3XPaths();
+        String[] linkXPaths = homepg.aboutUslinkXPath();
 
-        String[] expectedURL = homepg.getExpectedURL3();
+        String[] expectedURL = homepg.aboutUsexpectedURL();
 
         for (int i = 0; i < linkXPaths.length; i++) {
             jsUtils.scrollVertically(5000);
@@ -218,10 +219,10 @@ public class homepage extends baseTest {
         homepg.openURL();
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 
-        String[] linkXPaths = homepg.getLink4XPaths();
+        String[] linkXPaths = homepg.FooterlinkXPath();
 
 
-        String[] expectedURL = homepg.getExpectedURL4();
+        String[] expectedURL = homepg.FooterexpectedURL();
 
         for (int i = 0; i < linkXPaths.length; i++) {
 
