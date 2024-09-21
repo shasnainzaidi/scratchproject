@@ -83,47 +83,40 @@ public class Objects {
     public WebElement imageRemoveBtn;
 
 
-
-
-    private String baseURL = "https://www.olx.com.pk/";
-    private String invlaidEmail = "hasnin.xaidi1@gmail.com";
-    private String number = "03434001699";
-    private String pswrd = "qwerty10@";
-    private String email = "hasnain.xaidi1@gmail.com";
-    private String expectedUserName = "Everything for “U”";
-    private String adTitle1 = "Mobile for sale in Lahore";
-    private String adDescription1 = "Mobile for sale in LahoreMobile for sale in LahoreMobile for sale in Lahore";
-    private String adPrice1 = "5000";
-
+    @Step("Entering text into the input field")
+    public void enterText(WebElement element, String text) {
+        element.clear();
+        element.sendKeys(text);
+    }
 
     @Step("Opening the Website")
     public void openURL() {
-        driver.get(baseURL);
+        driver.get("https://www.olx.com.pk/");
     }
 
     @Step("Entering the invalid email")
-    public void enterInvalidEmail(){
-        emailId.sendKeys(invlaidEmail);
+    public void enterInvalidEmail() {
+        enterText(emailId, "hasnin.xaidi1@gmail.com");
     }
 
     @Step("Entering the phone number")
-    public void enterPhone(){
-        phoneId.sendKeys(number);
+    public void enterPhone() {
+        enterText(phoneId, "03434001699");
     }
 
     @Step("Entering the Email ID")
     public void enteremail(){
-        emailId.sendKeys(email);
+        enterText(emailId, "hasnain.xaidi1@gmail.com");
     }
 
     @Step("Added Title for the Ad")
     public void addTitle() {
-        adTitle.sendKeys(adTitle1);
+        enterText(adTitle, "Mobile for sale in Lahore");
     }
 
     @Step("Added desciprtion for the Ad")
     public void adddescription() {
-        adDescription.sendKeys(adDescription1);
+        enterText(adDescription, "Mobile for sale in LahoreMobile for sale in Lahore");
     }
 
     public void enterEmail(String email) {
@@ -131,14 +124,17 @@ public class Objects {
         emailId.sendKeys(email);
     }
 
+
     @Step("Added ad price")
     public void addprice() {
-        adPrice.sendKeys(adPrice1);
+        enterText(adPrice, "5000");
     }
+
     @Step("Entering the password and click next")
-    public void enterPassword(){
-        password.sendKeys(pswrd);
+    public void enterPassword() {
+        enterText(password, "qwerty10@");
     }
+
     public Objects(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
