@@ -126,6 +126,11 @@ public class Objects {
         adDescription.sendKeys(adDescription1);
     }
 
+    public void enterEmail(String email) {
+        emailId.clear();
+        emailId.sendKeys(email);
+    }
+
     @Step("Added ad price")
     public void addprice() {
         adPrice.sendKeys(adPrice1);
