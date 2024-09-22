@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            mvn test -Dsurefire.suiteXmlFiles= testngFiles/testng.xml \
+            mvn test -Dsurefire.suiteXmlFiles=testngFiles/testng.xml \
             -Dbrowser=chrome -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver
 
       # Store screenshots as artifacts
